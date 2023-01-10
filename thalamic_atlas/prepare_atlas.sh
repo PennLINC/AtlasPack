@@ -17,7 +17,7 @@ wget 'https://zenodo.org/record/1405484/files/Thalamic_Nuclei-ColorLUT.txt'
 antsApplyTransforms \
     -d 3 \
     -i Thalamus_Nuclei-HCP-MaxProb.nii.gz \
-    -o tpl-MNI152NLin6Asym_atlas-hcpthalamic_res-01_desc-brain_mask.nii.gz  \
+    -o tpl-MNI152NLin6Asym_atlas-hcpthalamic_res-01_dseg.nii.gz  \
     -t ../transforms/tpl-MNI152NLin6Asym_from-MNI152NLin2009aSym_mode-image_xfm.h5 \
     -r ${TEMPLATEFLOW_HOME}/tpl-MNI152NLin6Asym/tpl-MNI152NLin6Asym_res-01_desc-brain_mask.nii.gz \
     --interpolation GenericLabel \
@@ -27,7 +27,7 @@ antsApplyTransforms \
 antsApplyTransforms \
     -d 3 \
     -i Thalamus_Nuclei-HCP-MaxProb.nii.gz \
-    -o tpl-MNI152NLin2009cAsym_atlas-hcpthalamic_res-01_desc-brain_mask.nii.gz  \
+    -o tpl-MNI152NLin2009cAsym_atlas-hcpthalamic_res-01_dseg.nii.gz  \
     -t ../transforms/tpl-MNI152NLin2009cAsym_from-MNI152NLin2009aSym_mode-image_xfm.h5 \
     -r ${TEMPLATEFLOW_HOME}/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_desc-brain_mask.nii.gz \
     --interpolation GenericLabel \
