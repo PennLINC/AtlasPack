@@ -60,3 +60,5 @@ final_nii = nb.Nifti1Image(
     cit_168_img.affine,
     header=cit_168_img.header
 )
+
+final_nii.to_filename(output_cit_prefix + ".nii.gz")
