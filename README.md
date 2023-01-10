@@ -63,7 +63,7 @@ This atlas is in NLin6 space and the shasum of the repository was  fd12c94.
 Atlas is in FNIRT space - standard FSL space is MNI152NLin6Asym
 
 
-## Subcortical
+## Subcortical (CIT168)
 
 A high-resolutionprobabilistic in vivo atlas of humansubcortical brain nuclei
 In Scientific Data by Wolfgang M. Pauli, Amanda N. Nili & J. Michael Tyszka

@@ -11,18 +11,22 @@
 wget 'https://osf.io/download/6qrcb'
 mv 6qrcb labels.txt
 
-# download in NLin6
+# download in NLin6: convert it to RAS+ to match templateflow
 wget 'https://osf.io/download/2qswg'
-mv 2qswg tpl-MNI152NLin6Asym_atlas-CIT168_res-01_desc-original_dseg.nii.gz
+mv 2qswg tpl-MNI152NLin6Asym_atlas-CIT168_res-01_desc-LAS_dseg.nii.gz
+3dresample \
+    -orient LPI \
+    -inset tpl-MNI152NLin6Asym_atlas-CIT168_res-01_desc-LAS_dseg.nii.gz \
+    -prefix tpl-MNI152NLin6Asym_atlas-CIT168_res-01_desc-RAS_dseg.nii.gz
 
-# download in 2009cAsym
+# download in 2009cAsym: This one is already in RAS+
 wget 'https://osf.io/download/vak6p'
-mv vak6p tpl-MNI152NLin2009cAsym_atlas-CIT168_res-01_desc-original_dseg.nii.gz
+mv vak6p tpl-MNI152NLin2009cAsym_atlas-CIT168_res-01_desc-RAS_dseg.nii.gz
 
 python split_up_cit168.py \
-    tpl-MNI152NLin6Asym_atlas-CIT168_res-01_desc-original_dseg.nii.gz \
-    tpl-MNI152NLin6Asym_atlas-CIT168_res-01_desc-split_dseg.nii.gz
+    tpl-MNI152NLin6Asym_atlas-CIT168_res-01_desc-RAS_dseg.nii.gz \
+    tpl-MNI152NLin6Asym_atlas-CIT168_res-01_desc-LRSplit_dseg
 
 python split_up_cit168.py \
-    tpl-MNI152NLin2009cAsym_atlas-CIT168_res-01_desc-original_dseg.nii.gz \
-    tpl-MNI152NLin2009cAsym_atlas-CIT168_res-01_desc-split_dseg.nii.gz
+    tpl-MNI152NLin2009cAsym_atlas-CIT168_res-01_desc-RAS_dseg.nii.gz \
+    tpl-MNI152NLin2009cAsym_atlas-CIT168_res-01_desc-LRSplit_dseg

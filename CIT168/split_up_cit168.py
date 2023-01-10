@@ -1,20 +1,25 @@
 #!/usr/bin/env python
-# Do CIT168
+import sys,os
+import pandas as pd
 from merge_atlases import *
+
+input_cit_file, output_cit_prefix = sys.argv[1:]
+
 cit168_subcortical = {
     "node_names": [],
     "node_ids": []
 }
 
-with open("data/2009cAsym/CIT168labels.txt") as f:
+with open("labels.txt") as f:
     for line in f:
-        node_id, node_name = line.strip().split(",")
+        split = line.strip().split()
+        if not len(split) == 2: continue
+        node_id, node_name = line.strip().split()
         cit168_subcortical['node_names'].append("CIT168Subcortical_" + node_name)
         cit168_subcortical['node_ids'].append(int(node_id)+1) # they started at 0, wtf
 
-cit168_data = nb.load(
-    "data/2009cAsym/tpl-MNI152NLin2009cAsym_res-01_atlas-CIT168_desc-LPS_dseg.nii.gz"
-).get_fdata().astype(np.uint32)
+cit_168_img = nb.load(input_cit_file)
+cit168_data = cit_168_img.get_fdata().astype(np.uint32)
 
 
 # Merge the smaller regions together
@@ -38,11 +43,20 @@ offsetmask[midvoxel:, :, :] = 100
 hemi_cit_data = (cit168_data + offsetmask) * (cit168_data > 0)
 
 # Split regions into hemispheres
-cit_hemi_labels = [name + "_rh" for name in merged_cit_labels] + \
-             [name + "_lh" for name in merged_cit_labels]
+cit_hemi_labels = [name + "_lh" for name in merged_cit_labels] + \
+             [name + "_rh" for name in merged_cit_labels]
 cit_hemi_ids = merged_cit_ids + [_id + 100 for _id in merged_cit_ids]
 cit_hemi_config = {
     "node_ids": cit_hemi_ids,
     "node_names": cit_hemi_labels
 }
 verify_atlas(cit_hemi_config, hemi_cit_data)
+
+labeldf = pd.DataFrame({"index": cit_hemi_ids, "name": cit_hemi_labels})
+labeldf.to_csv(output_cit_prefix+".tsv", sep="\t")
+
+final_nii = nb.Nifti1Image(
+    hemi_cit_data,
+    cit_168_img.affine,
+    header=cit_168_img.header
+)
