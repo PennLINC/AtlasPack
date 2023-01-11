@@ -1,0 +1,25 @@
+#$ Maximum likelihood atlas of seven anatomical thalamic subparts
+
+
+#No. Label Name:                                                           R   G   B   A
+
+
+# Left Hemisphere. Thalamic Nuclei
+ 0   Unknown                               			           0   0   0   0
+ 1   LH-Pulvinar                  					   255 0   0   0
+ 2   LH-Anterior                 					   0   255 0   0
+ 3   LH-Medio_Dorsal                        				   255 255 0   0
+ 4   LH-Ventral_Latero_Dorsal                        			   255 123 0   0
+ 5   LH-Central_Lateral-Lateral_Posterior-Medial_Pulvinar                  0   255 255 0
+ 6   LH-Ventral_Anterior                                                   255 0   255 0
+ 7   LH-Ventral_Latero_Ventral                                             0   0   255 0
+ 
+# Right Hemisphere. Thalamic Nuclei
+ 8   RH-Pulvinar                  					   255 0   0   0
+ 9   RH-Anterior                 					   0   255 0   0
+ 10  RH-Medio_Dorsal                        				   255 255 0   0
+ 11  RH-Ventral_Latero_Dorsal                        			   255 123 0   0
+ 12  RH-Central_Lateral-Lateral_Posterior-Medial_Pulvinar                  0   255 255 0
+ 13  RH-Ventral_Anterior                                                   255 0   255 0
+ 14  RH-Ventral_Latero_Ventral                                             0   0   255 0
+
