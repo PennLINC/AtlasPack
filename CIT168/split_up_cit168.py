@@ -15,7 +15,7 @@ with open("labels.txt") as f:
         split = line.strip().split()
         if not len(split) == 2: continue
         node_id, node_name = line.strip().split()
-        cit168_subcortical['node_names'].append("CIT168Subcortical_" + node_name)
+        cit168_subcortical['node_names'].append(node_name)
         cit168_subcortical['node_ids'].append(int(node_id)+1) # they started at 0, wtf
 
 cit_168_img = nb.load(input_cit_file)
@@ -43,8 +43,8 @@ offsetmask[midvoxel:, :, :] = 100
 hemi_cit_data = (cit168_data + offsetmask) * (cit168_data > 0)
 
 # Split regions into hemispheres
-cit_hemi_labels = [name + "_lh" for name in merged_cit_labels] + \
-             [name + "_rh" for name in merged_cit_labels]
+cit_hemi_labels = ["CIT168Subcortical_LH-" + name for name in merged_cit_labels] + \
+             ["CIT168Subcortical_RH-" + name for name in merged_cit_labels]
 cit_hemi_ids = merged_cit_ids + [_id + 100 for _id in merged_cit_ids]
 cit_hemi_config = {
     "node_ids": cit_hemi_ids,
@@ -53,7 +53,7 @@ cit_hemi_config = {
 verify_atlas(cit_hemi_config, hemi_cit_data)
 
 labeldf = pd.DataFrame({"index": cit_hemi_ids, "name": cit_hemi_labels})
-labeldf.to_csv(output_cit_prefix+".tsv", sep="\t")
+labeldf.to_csv(output_cit_prefix+".tsv", sep="\t", index=False)
 
 final_nii = nb.Nifti1Image(
     hemi_cit_data,

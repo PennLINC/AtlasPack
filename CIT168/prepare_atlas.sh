@@ -30,3 +30,6 @@ python split_up_cit168.py \
 python split_up_cit168.py \
     tpl-MNI152NLin2009cAsym_atlas-CIT168_res-01_desc-RAS_dseg.nii.gz \
     tpl-MNI152NLin2009cAsym_atlas-CIT168_res-01_desc-LRSplit_dseg
+
+# They're the same so make one that covers both
+cp tpl-MNI152NLin2009cAsym_atlas-CIT168_res-01_desc-LRSplit_dseg.tsv atl-CIT168.tsv
