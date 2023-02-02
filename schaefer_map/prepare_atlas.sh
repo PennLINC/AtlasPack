@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the schaefer atlases from the 2019 update.
-# python schaefer_ordering_mapper.py
+python schaefer_ordering_mapper.py
 
 for order in 100 200 300 400 500 600 800 1000
 do
