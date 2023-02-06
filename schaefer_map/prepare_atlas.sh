@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Get the schaefer atlases from the 2019 update.
-# python schaefer_ordering_mapper.py
+python schaefer_ordering_mapper.py
 
-for order in 100 200 300 400 500 600 800 1000
+for order in 100 200 300 400 500 600 700 800 900 1000
 do
     original=Schaefer2018_${order}Parcels_7Networks_order_FSLMNI152_1mm.nii.gz
     # Resample it into the official TemplateFlow volume
