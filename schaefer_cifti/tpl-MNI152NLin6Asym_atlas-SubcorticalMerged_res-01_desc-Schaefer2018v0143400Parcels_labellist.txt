@@ -1,0 +1,104 @@
+LH-Pu
+401 0 0 1 1
+LH-Ca
+402 0 0 2 1
+LH-NAC
+403 0 0 3 1
+LH-EXA
+404 0 0 4 1
+LH-GPe
+405 0 0 5 1
+LH-GPi
+406 0 0 6 1
+LH-SNc_PBP_VTA
+407 0 0 7 1
+LH-RN
+408 0 0 8 1
+LH-SNr
+409 0 0 9 1
+LH-VeP
+410 0 0 12 1
+LH-HN
+411 0 0 13 1
+LH-HTH
+412 0 0 14 1
+LH-MN
+413 0 0 15 1
+LH-STH
+414 0 0 16 1
+RH-Pu
+415 0 0 101 1
+RH-Ca
+416 0 0 102 1
+RH-NAC
+417 0 0 103 1
+RH-EXA
+418 0 0 104 1
+RH-GPe
+419 0 0 105 1
+RH-GPi
+420 0 0 106 1
+RH-SNc_PBP_VTA
+421 0 0 107 1
+RH-RN
+422 0 0 108 1
+RH-SNr
+423 0 0 109 1
+RH-VeP
+424 0 0 112 1
+RH-HN
+425 0 0 113 1
+RH-HTH
+426 0 0 114 1
+RH-MN
+427 0 0 115 1
+RH-STH
+428 0 0 116 1
+LH-Pulvinar
+429 0 0 117 1
+LH-Anterior
+430 0 0 118 1
+LH-Medio_Dorsal
+431 0 0 119 1
+LH-Ventral_Latero_Dorsal
+432 0 0 120 1
+LH-Central_Lateral-Lateral_Posterior-Medial_Pulvinar
+433 0 0 121 1
+LH-Ventral_Anterior
+434 0 0 122 1
+LH-Ventral_Latero_Ventral
+435 0 0 123 1
+RH-Pulvinar
+436 0 0 124 1
+RH-Anterior
+437 0 0 125 1
+RH-Medio_Dorsal
+438 0 0 126 1
+RH-Ventral_Latero_Dorsal
+439 0 0 127 1
+RH-Central_Lateral-Lateral_Posterior-Medial_Pulvinar
+440 0 0 128 1
+RH-Ventral_Anterior
+441 0 0 129 1
+RH-Ventral_Latero_Ventral
+442 0 0 130 1
+Cerebellar_Region1
+443 0 0 131 1
+Cerebellar_Region2
+444 0 0 132 1
+Cerebellar_Region3
+445 0 0 133 1
+Cerebellar_Region4
+446 0 0 134 1
+Cerebellar_Region5
+447 0 0 135 1
+Cerebellar_Region6
+448 0 0 136 1
+Cerebellar_Region7
+449 0 0 137 1
+Cerebellar_Region8
+450 0 0 138 1
+Cerebellar_Region9
+451 0 0 139 1
+Cerebellar_Region10
+452 0 0 140 1

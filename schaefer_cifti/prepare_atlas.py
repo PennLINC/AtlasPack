@@ -89,26 +89,32 @@ def prepare_subcortical_atlas(n_parcels):
 
 def combine_metadata(n_parcels):
     """Combine metadata."""
+    atlas_name = "Schaefer2018v0143"
+
     subcortical_metadata_file = os.path.abspath("../atlas-SubcorticalMerged_dseg.json")
     subcortical_labels_file = os.path.abspath(
         "../tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv",
     )
     schaefer_labels_file = os.path.abspath(
-        f"../schaefer_map/atlas-Schaefer2018_desc-{n_parcels}ParcelsAllNetworks_dseg.tsv",
+        f"../schaefer_map/atlas-{atlas_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.tsv",
+    )
+    schaefer_nifti_metadata_file = os.path.abspath(
+        f"../schaefer_map/atlas-{atlas_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.json"
     )
     schaefer_metadata_file = (
-        "tpl-MNI152NLin6Asym_atlas-Schaefer2018v0143Merged_res-01_"
+        f"tpl-MNI152NLin6Asym_atlas-{atlas_name}Merged_res-01_"
         f"desc-{n_parcels}Parcels_dseg.json"
     )
     out_labels_file = (
-        "tpl-MNI152NLin6Asym_atlas-Schaefer2018v0143Merged_res-01_"
+        f"tpl-MNI152NLin6Asym_atlas-{atlas_name}Merged_res-01_"
         f"desc-{n_parcels}Parcels_dseg.tsv"
     )
 
     with open(subcortical_metadata_file, "r") as fo:
         subcortical_metadata = json.load(fo)
 
-    atlas_name = "Schaefer2018v0143"
+    with open(schaefer_nifti_metadata_file, "r") as fo:
+        schaefer_nifti_metadata = json.load(fo)
 
     schaefer_metadata = {
         "Authors": [
@@ -181,6 +187,8 @@ def combine_metadata(n_parcels):
             "Conte69.R.midthickness.32k_fs_LR.surf.gii"
         ),
     }
+    # Add descriptions of column names
+    subcortical_metadata.update(schaefer_nifti_metadata)
 
     with open(schaefer_metadata_file, "w") as fo:
         json.dump(subcortical_metadata, fo, sort_keys=True, indent=4)
@@ -194,11 +202,11 @@ def combine_metadata(n_parcels):
         join="outer",
         ignore_index=True,
     )
-    merged_labels.to_csv(out_labels_file, sep="\t", index_label="index")
+    merged_labels.to_csv(out_labels_file, sep="\t", index_label="index", na_rep="n/a")
 
 
 if __name__ == "__main__":
     for n_parcels in tqdm([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]):
-        download_image(n_parcels)
+        # download_image(n_parcels)
         prepare_subcortical_atlas(n_parcels)
         combine_metadata(n_parcels)
