@@ -60,7 +60,7 @@ def map_schaefer_orders(n_parcels):
 
     # save out
     coord_merge.to_csv(
-        f"atlas-Schaefer2018_desc-{n_parcels}ParcelsAllNetworks_dseg.tsv",
+        f"atlas-Schaefer2018v0143_desc-{n_parcels}ParcelsAllNetworks_dseg.tsv",
         sep="\t",
         index=False,
         na_rep="n/a",  # for BIDS
@@ -97,7 +97,7 @@ def map_schaefer_orders(n_parcels):
         },
     }
     with open(
-        f"atlas-Schaefer2018_desc-{n_parcels}ParcelsAllNetworks_dseg.json", "w"
+        f"atlas-Schaefer2018v0143_desc-{n_parcels}ParcelsAllNetworks_dseg.json", "w"
     ) as fo:
         json.dump(merge_dict, fo, sort_keys=True, indent=4)
 
