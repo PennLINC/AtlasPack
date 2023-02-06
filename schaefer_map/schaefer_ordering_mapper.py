@@ -42,7 +42,7 @@ def download_image(n_parcels):
     wget.download(os.path.join(remote_path, file7), pwd)
     wget.download(os.path.join(remote_path, file17), pwd)
 
-for order in tqdm([100, 200, 300, 400, 500, 600, 800, 1000]):
+for order in tqdm([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]):
     map_schaefer_orders(order)
     download_image(order)
 
