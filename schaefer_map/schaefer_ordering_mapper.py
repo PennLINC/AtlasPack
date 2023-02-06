@@ -5,7 +5,7 @@ import pandas as pd
 from tqdm import tqdm
 
 # github link
-remote_path = 'https://github.com/ThomasYeoLab/CBIG/raw/master/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal/Parcellations/MNI'
+remote_path = 'https://github.com/ThomasYeoLab/CBIG/raw/eca7bc9f63d732834f74b44beac30af360608347/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal/Parcellations/MNI'
 pwd = os.getcwd()
 def map_schaefer_orders(n_parcels):
 
