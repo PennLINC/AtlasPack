@@ -1,14 +1,15 @@
 import os
-import wget
-import numpy as np
+
 import pandas as pd
+import wget
 from tqdm import tqdm
 
 # github link
 remote_path = 'https://github.com/ThomasYeoLab/CBIG/raw/eca7bc9f63d732834f74b44beac30af360608347/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal/Parcellations/MNI'
 pwd = os.getcwd()
-def map_schaefer_orders(n_parcels):
 
+
+def map_schaefer_orders(n_parcels):
     # download schaefer files from official source
     file7 = 'Schaefer2018_{0}Parcels_7Networks_order_FSLMNI152_2mm.Centroid_RAS.csv'.format(n_parcels)
     file17 = 'Schaefer2018_{0}Parcels_17Networks_order_FSLMNI152_2mm.Centroid_RAS.csv'.format(n_parcels)
@@ -35,6 +36,7 @@ def map_schaefer_orders(n_parcels):
         'atlas-Schaefer2018_desc-{}ParcelsAllNetworks_dseg.tsv'.format(n_parcels),
         sep="\t", index=False)
 
+
 def download_image(n_parcels):
     # download schaefer files from official source
     file7 = 'Schaefer2018_{0}Parcels_7Networks_order_FSLMNI152_1mm.nii.gz'.format(n_parcels)
@@ -42,7 +44,9 @@ def download_image(n_parcels):
     wget.download(os.path.join(remote_path, file7), pwd)
     wget.download(os.path.join(remote_path, file17), pwd)
 
-for order in tqdm([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]):
-    map_schaefer_orders(order)
-    download_image(order)
+
+if __name__ == "__main__":
+    for order in tqdm([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]):
+        map_schaefer_orders(order)
+        download_image(order)
 
