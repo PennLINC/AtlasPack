@@ -14,7 +14,7 @@
     ],
     "Density": {
         "32k": "32492 vertices per hemisphere. No subcortical data.",
-        "91k": "96854 vertices. 29696 surface vertices in left hemisphere. 29716 surface vertices in right hemisphere. 31870 subcortical voxels, at 2 mm isotropic resolution."
+        "91k": "91282 vertices. 29696 surface vertices in left hemisphere. 29716 surface vertices in right hemisphere. 31870 subcortical voxels, at 2 mm isotropic resolution."
     },
     "Description": "A set of non-cortical atlases and the Schaefer 300-parcel cortical atlas, that have been merged together in template space.",
     "License": "Creative Commons license CC BY-ND (Attribution - No derivatives)",

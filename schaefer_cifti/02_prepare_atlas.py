@@ -59,6 +59,36 @@ def download_schaefer_cifti(n_parcels):
     os.rename(remote_filename, out_file)
 
 
+def download_templates():
+    import os
+    import shutil
+
+    from templateflow.api import get as get_template
+
+    rh = str(
+        get_template(
+            template="fsLR",
+            hemi="R",
+            density="32k",
+            desc="nomedialwall",
+            suffix="dparc",
+            extension=".label.gii",
+        )
+    )
+    lh = str(
+        get_template(
+            template="fsLR",
+            hemi="L",
+            density="32k",
+            desc="nomedialwall",
+            suffix="dparc",
+            extension=".label.gii",
+        )
+    )
+    shutil.copyfile(rh, os.path.basename(rh))
+    shutil.copyfile(lh, os.path.basename(lh))
+
+
 def prepare_subcortical_atlas(n_parcels):
     """Create "label list file" to use with ``wb_command -volume-label-import``."""
     labels_file = "../tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv"
@@ -215,7 +245,7 @@ def combine_metadata(n_parcels):
     # Add density field
     atlas_metadata["Density"] = {
         "91k": (
-            "96854 vertices. "
+            "91282 vertices. "
             "29696 surface vertices in left hemisphere. "
             "29716 surface vertices in right hemisphere. "
             "31870 subcortical voxels, at 2 mm isotropic resolution."
@@ -255,6 +285,8 @@ def combine_metadata(n_parcels):
 
 
 if __name__ == "__main__":
+    download_templates()
+
     for n_parcels in tqdm([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]):
         download_schaefer_cifti(n_parcels)
         prepare_subcortical_atlas(n_parcels)
