@@ -1,0 +1,158 @@
+{
+    "Authors": [
+        "M. Cieslak",
+        "T. Salo",
+        "E. Feczko",
+        "T.D. Satterthwaite"
+    ],
+    "BIDSVersion": "1.8.0",
+    "Curators": [
+        "M. Cieslak",
+        "T. Salo",
+        "E. Feczko",
+        "T.D. Satterthwaite"
+    ],
+    "Density": {
+        "32k": "32492 vertices per hemisphere. No subcortical data.",
+        "91k": "96854 vertices. 29696 surface vertices in left hemisphere. 29716 surface vertices in right hemisphere. 31870 subcortical voxels, at 2 mm isotropic resolution."
+    },
+    "Description": "A set of non-cortical atlases and the Schaefer 800-parcel cortical atlas, that have been merged together in template space.",
+    "License": "Creative Commons license CC BY-ND (Attribution - No derivatives)",
+    "Name": "4S852: Schaefer Supplemented with Subcortical Structures",
+    "ReferencesAndLinks": [
+        "https://github.com/PennLINC/AtlasPack"
+    ],
+    "RegionNames": {
+        "Ca": "Caudate Nucleus",
+        "EXA": "Extended Amygdala",
+        "GPe": "Globus Pallidus, External",
+        "GPi": "Globus Pallidus, Internal",
+        "HN": "Habenular Nuclei",
+        "MN": "Mammilary Nucleus",
+        "NAC": "Nucleus Acumbens",
+        "PBP": "Parabrachial Pigmented Nucleus",
+        "Pu": "Putamen",
+        "RN": "Red Nucleus",
+        "SNc": "Substantia Nigra, Pars Compacta",
+        "SNr": "Substantia Nigra, Pars Reticulata",
+        "STH": "Subthalamic Nucleus",
+        "VTA": "Ventral Tegmental Area",
+        "VeP": "Ventral Pallidum"
+    },
+    "SourceAtlases": {
+        "CIT168Subcortical": {
+            "Authors": [
+                "W.M. Pauli",
+                "A.N. Nili",
+                "J.M. Tyszka"
+            ],
+            "Curators": [
+                "W.M. Pauli",
+                "A.N. Nili",
+                "J.M. Tyszka",
+                "M. Okamoto"
+            ],
+            "Description": "Parcellations based on high spatial resolution, three-dimensional templates, using high-accuracy diffeomorphic registration of T1- and T2- weighted structural images from 168 typical adults between 22 and 35 years old. NOTE: Atlases originally assigned the same label to structures in each hemisphere. Here we have split the regions into hemispheres. Additionally, the SNC, PBP and VTA regions have been merged into a single structure.",
+            "License": "MIT: https://github.com/jmtyszka/CIT168-SubCorticalAtlas/blob/master/LICENSE.md",
+            "Name": "CIT168",
+            "ReferencesAndLinks": [
+                "https://neurovault.org/collections/3145/",
+                "https://osf.io/jkzwp/wiki/home/",
+                "https://github.com/jmtyszka/CIT168-SubCorticalAtlas",
+                "Pauli, W., Nili, A. & Tyszka, J. A high-resolution probabilistic in vivo atlas of human subcortical brain nuclei. Sci Data 5, 180063 (2018). https://doi.org/10.1038"
+            ]
+        },
+        "Cerebellum": {
+            "Authors": [
+                "King, M.",
+                "Hernandez-Castillo, C.R.",
+                "Poldrack, R.R.",
+                "Ivry, R.",
+                "Diedrichsen, J."
+            ],
+            "Curators": [
+                "Diedrichsen J"
+            ],
+            "Description": "King et al. (2019) provided an extensive characterization of the functional organization of the cerebellum of 24 healthy, young participants. The contast are for for 47 task conditions, accounted for the activity caused by left hand, right hand, and eye movements. All contrast maps are relative to the mean activitiy across all tasks. The parcellation into 10 regions is defined from the task-evoked activity across all tasks.",
+            "License": "Creative Commons license CC BY-ND (Attribution - No derivatives)",
+            "Name": "Multi-domain task battery (MDTB) cerebellar parcellation",
+            "ReferencesAndLinks": [
+                "https://github.com/DiedrichsenLab/cerebellar_atlases",
+                "King, M., Hernandez-Castillo, C.R., Poldrack, R.R., Ivry, R., and Diedrichsen, J. (2019). Functional Boundaries in the Human Cerebellum revealed by a Multi-Domain Task Battery. Nat. Neurosci."
+            ]
+        },
+        "Schaefer2018v0143": {
+            "Authors": [
+                "A Schaefer",
+                "R Kong",
+                "E.M. Gordon",
+                "T.O. Laumann",
+                "X. Zuo",
+                "A.J. Holmes",
+                "S.B. Eickhoff",
+                "B.T. Yeo"
+            ],
+            "Curators": [
+                "A Schaefer",
+                "R Kong",
+                "E.M. Gordon",
+                "T.O. Laumann",
+                "X. Zuo",
+                "A.J. Holmes",
+                "S.B. Eickhoff",
+                "B.T. Yeo"
+            ],
+            "Description": "Resting state fMRI data from 1489 subjects were registered using surface-based alignment. A gradient weighted markov random field approach was employed to identify cortical parcels ranging from 100 to 1000 parcels. More details can be found in Schaefer et al. 2018.",
+            "License": "MIT: https://github.com/ThomasYeoLab/CBIG/blob/a8c7a0bb845210424ef1c46d1435fec591b2cf3d/LICENSE.md",
+            "Name": "Schaefer2018v0143",
+            "ReferencesAndLinks": [
+                "https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal",
+                "Schaefer, A., Kong, R., Gordon, E. M., Laumann, T. O., Zuo, X. N., Holmes, A. J., Eickhoff, S. B., & Yeo, B. T. (2018). Local-global parcellation of the human cerebral cortex from intrinsic functional connectivity MRI. Cerebral cortex, 28(9), 3095-3114."
+            ]
+        },
+        "ThalamusHCP": {
+            "Authors": [
+                "E. Najdenovska",
+                "Y. Al\u00e9man-G\u00f3mez",
+                "G. Battistella",
+                "M. Descoteaux",
+                "P. Hagmann",
+                "S. Jacquemont",
+                "P. Maeder",
+                "J.P. Thiran",
+                "E. Fornari",
+                "M. Bach Cuadra"
+            ],
+            "Description": "Regions are based on a probabilistic atlas of anatomical subparts of the thalamus built upon a relatively large dataset where the individual thalamic parcellation was done by employing a recently proposed automatic diffusion-based clustering method. NOTE: ",
+            "License": "Creative Commons Attribution Share Alike 4.0 International https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+            "Name": "HCP Thalamic Parcellation",
+            "ReferencesAndLinks": [
+                "doi: 10.1038/sdata.2018.270",
+                "https://zenodo.org/record/1405484/files/Thalamus_Nuclei-HCP-MaxProb.nii.gz",
+                "https://zenodo.org/record/1405484/files/Thalamic_Nuclei-ColorLUT.txt",
+                "Najdenovska, E., Alem\u00e1n-G\u00f3mez, Y., Battistella, G. et al. In-vivo probabilistic atlas of human thalamic nuclei based on diffusion-weighted magnetic resonance imaging. Sci Data 5, 180270 (2018). https://doi.org/10.1038/sdata.2018.270"
+            ]
+        }
+    },
+    "SpatialReference": {
+        "CIFTI_STRUCTURE_CORTEX_LEFT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
+        "CIFTI_STRUCTURE_CORTEX_RIGHT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii",
+        "VolumeReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-01_T1w.nii.gz"
+    },
+    "index_17network": {
+        "Description": "The corresponding integer value of this node in the 17-network Schaefer atlas imaging file.",
+        "LongName": "Node index from Schaefer 17-network atlas"
+    },
+    "label_17network": {
+        "Description": "The label of the node as it appears in the canonical Schaefer 17-network atlas.",
+        "LongName": "Node label from Schaefer 17-network atlas"
+    },
+    "label_7network": {
+        "Description": "The label of the node as it appears in the canonical Schaefer 7-network atlas.",
+        "LongName": "Node label from Schaefer 7-network atlas"
+    },
+    "network_label_17network": {
+        "Description": "The name of the network this node is assigned to in the Schaefer 17-network atlas.",
+        "LongName": "Network label from Schaefer 17-network atlas"
+    }
+}
