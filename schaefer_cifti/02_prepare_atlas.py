@@ -49,14 +49,14 @@ def download_schaefer_cifti(n_parcels):
     )
     pwd = os.getcwd()
 
-    remote_filename = f"Schaefer2018_{n_parcels}Parcels_7Networks_order.dlabel.nii"
-    wget.download(os.path.join(remote_path, remote_filename), pwd)
-
     out_file = (
         "tpl-fsLR_atlas-Schaefer2018v0143_den-32k_"
         f"desc-{n_parcels}ParcelsAllNetworks_dseg.dlabel.nii"
     )
-    os.rename(remote_filename, out_file)
+    if not os.path.isfile(out_file):
+        remote_filename = f"Schaefer2018_{n_parcels}Parcels_7Networks_order.dlabel.nii"
+        wget.download(os.path.join(remote_path, remote_filename), pwd)
+        os.rename(remote_filename, out_file)
 
 
 def download_templates():
@@ -76,17 +76,20 @@ def download_templates():
         )
     )
     lh = str(
-        get_template(
-            template="fsLR",
-            hemi="L",
-            density="32k",
-            desc="nomedialwall",
-            suffix="dparc",
-            extension=".label.gii",
-        )
+get_template(
+    template="fsLR",
+    hemi="L",
+    density="32k",
+    desc="nomedialwall",
+    suffix="dparc",
+    extension=".label.gii",
+)
     )
-    shutil.copyfile(rh, os.path.basename(rh))
-    shutil.copyfile(lh, os.path.basename(lh))
+    if not os.path.isfile(os.path.basename(rh)):
+        shutil.copyfile(rh, os.path.basename(rh))
+
+    if not os.path.isfile(os.path.basename(lh)):
+        shutil.copyfile(lh, os.path.basename(lh))
 
 
 def prepare_subcortical_atlas(n_parcels):
