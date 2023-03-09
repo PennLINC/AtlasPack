@@ -22,9 +22,9 @@ do
 
     # Run wb_command -volume-label-import <input> <label-list-file> <output> -discard-others
     echo "    Converting NIFTI atlas to NIFTI label file."
-    subcort_nii="tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_desc-Schaefer2018v0143${order}Parcels_dseg.nii.gz"
-    subcort_labels="tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_desc-Schaefer2018v0143${order}Parcels_labellist.txt"
-    subcort_niilabel="tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_desc-Schaefer2018v0143${order}ParcelsLabels_dseg.nii.gz"
+    subcort_nii="tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_desc-Schaefer2018v0143x${order}Parcels_dseg.nii.gz"
+    subcort_labels="tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_desc-Schaefer2018v0143x${order}Parcels_labellist.txt"
+    subcort_niilabel="tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_desc-Schaefer2018v0143x${order}ParcelsLabels_dseg.nii.gz"
     wb_command -volume-label-import $subcort_nii $subcort_labels $subcort_niilabel
 
     # Combine the NIFTI file, Schaefer left hemisphere, and Schaefer right hemisphere into a CIFTI

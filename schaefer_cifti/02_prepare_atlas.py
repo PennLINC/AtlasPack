@@ -100,11 +100,11 @@ def prepare_subcortical_atlas(n_parcels):
     labels_df = pd.read_table(labels_file, index_col="index")
     out_labels_file = (
         "tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_"
-        f"desc-Schaefer2018v0143{n_parcels}Parcels_labellist.txt"
+        f"desc-Schaefer2018v0143x{n_parcels}Parcels_labellist.txt"
     )
     out_atlas_file = (
         "tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_"
-        f"desc-Schaefer2018v0143{n_parcels}Parcels_dseg.nii.gz"
+        f"desc-Schaefer2018v0143x{n_parcels}Parcels_dseg.nii.gz"
     )
     out_str = ""
 
