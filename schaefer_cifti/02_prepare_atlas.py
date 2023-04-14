@@ -76,14 +76,14 @@ def download_templates():
         )
     )
     lh = str(
-get_template(
-    template="fsLR",
-    hemi="L",
-    density="32k",
-    desc="nomedialwall",
-    suffix="dparc",
-    extension=".label.gii",
-)
+        get_template(
+            template="fsLR",
+            hemi="L",
+            density="32k",
+            desc="nomedialwall",
+            suffix="dparc",
+            extension=".label.gii",
+        )
     )
     if not os.path.isfile(os.path.basename(rh)):
         shutil.copyfile(rh, os.path.basename(rh))
