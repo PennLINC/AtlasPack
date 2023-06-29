@@ -10,6 +10,6 @@ datalad run \
   -i "schaefer_map/atlas-Schaefer2018v0143_desc-*ParcelsAllNetworks_dseg.tsv" \
   -i "atlas-4S*Parcels_dseg.tsv" \
   -o "tpl-MNI152NLin*_atlas-4S*Parcels_res-01_dseg.nii.gz" \
-  "jupyter nbconvert --to notebook --execute --allow-errors JointAtlas.ipynb"
+  "jupyter nbconvert --to notebook --execute --allow-errors Volumetric4S.ipynb"
 
 
