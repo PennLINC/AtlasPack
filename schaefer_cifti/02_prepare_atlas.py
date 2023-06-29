@@ -284,6 +284,8 @@ def combine_metadata(n_parcels):
         join="outer",
         ignore_index=True,
     )
+    # Start index at 1
+    merged_labels.index = merged_labels.index + 1
     merged_labels.to_csv(merged_labels_file, sep="\t", index_label="index", na_rep="n/a")
 
 
