@@ -293,6 +293,6 @@ if __name__ == "__main__":
     download_templates()
 
     for n_parcels in tqdm([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]):
-        # download_schaefer_cifti(n_parcels)
-        # prepare_subcortical_atlas(n_parcels)
+        download_schaefer_cifti(n_parcels)
+        prepare_subcortical_atlas(n_parcels)
         combine_metadata(n_parcels)
