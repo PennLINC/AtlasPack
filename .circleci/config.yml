@@ -35,7 +35,7 @@ jobs:
           command: |
             cd docker_build
             tar xvfJ /tmp/data/4S.tar.xz
-            docker build -t pennlinc/atlaspack:latest
+            docker build -t pennlinc/atlaspack .
       - run:
           name: Deploy to Docker Hub
           no_output_timeout: 40m
