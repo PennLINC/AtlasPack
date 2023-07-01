@@ -34,7 +34,7 @@ jobs:
           name: build docker image
           command: |
             cd docker_build
-            tar xvfJ /tmp/data/4s.tar.xz
+            tar xvfJ /tmp/data/4S.tar.xz
             docker build -t pennlinc/atlaspack:latest
       - run:
           name: Deploy to Docker Hub
