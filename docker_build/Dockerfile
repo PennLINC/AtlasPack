@@ -3,7 +3,7 @@
 
 FROM scratch
 
-COPY ./*4S* /AtlasPack
+COPY ./*4S* /AtlasPack/
 
 
 
