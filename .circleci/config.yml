@@ -20,7 +20,7 @@ jobs:
       - persist_to_workspace:
           root: /data
           paths:
-            - "4S.tar.gz"
+            - "4S.tar.xz"
   build:
     docker:
       - image: cimg/base:2020.09
