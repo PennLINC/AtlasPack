@@ -1,0 +1,66 @@
+version: 2.1
+jobs:
+  package_data:
+    docker:
+      - image: markiewicz/datalad:0.15.1
+    steps:
+      - checkout
+      - run:
+          name: get data from OSF
+          command: |
+            git config --global user.email "you@example.com"
+            git config --global user.name "Your Name"
+            set +e
+            datalad get *4S*
+            mkdir /data
+            cd /data
+            cp -rL $OLDPWD/*4S* .
+            tar cvfJ 4S.tar.xz *4S*
+
+      - persist_to_workspace:
+          root: /data
+          paths:
+            - "4S.tar.xz"
+  build:
+    docker:
+      - image: cimg/base:2020.09
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/data
+      - setup_remote_docker:
+         version: 19.03.13
+      - run:
+          name: build docker image
+          command: |
+            cd docker_build
+            tar xvfJ /tmp/data/4s.tar.xz
+            docker build -t pennlinc/atlaspack:latest
+      - run:
+          name: Deploy to Docker Hub
+          no_output_timeout: 40m
+          command: |
+            if [[ -n "$DOCKER_PASS" ]]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker tag pennlinc/atlaspack pennlinc/atlaspack:unstable
+              docker push pennlinc/atlaspack:unstable
+              if [[ -n "$CIRCLE_TAG" ]]; then
+                docker push pennlinc/atlaspack:latest
+                docker tag pennlinc/atlaspack pennlinc/atlaspack:$CIRCLE_TAG
+                docker push pennlinc/atlaspack:$CIRCLE_TAG
+              fi
+            fi
+
+
+workflows:
+  example:
+    jobs:
+      - package_data
+      - build:
+          requires:
+            - package_data
+          filters:
+            branches:
+              only: main
+            tags:
+              only: /.*/
