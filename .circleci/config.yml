@@ -55,7 +55,10 @@ jobs:
 workflows:
   example:
     jobs:
-      - package_data
+      - package_data:
+          filters:
+            tags:
+              only: /.*/
       - build:
           requires:
             - package_data
