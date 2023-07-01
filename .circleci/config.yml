@@ -8,6 +8,8 @@ jobs:
       - run:
           name: get data from OSF
           command: |
+            git config --global user.email "you@example.com"
+            git config --global user.name "Your Name"
             datalad get *4S*
             mkdir /data
             cd /data
