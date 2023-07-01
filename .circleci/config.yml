@@ -1,0 +1,45 @@
+version: 2.1
+jobs:
+  package_data:
+    docker:
+      - image: markiewicz/datalad:0.15.1
+    steps:
+      - checkout
+      - run:
+          name: get data from OSF
+          command: |
+            datalad get *4S*
+            mkdir /data
+            cd /data
+            cp -rL $OLDPWD/*4S* .
+            tar cvfJ 4S.tar.xz *4S*
+
+      - persist_to_workspace:
+          root: /data
+          paths:
+            - "4S.tar.gz"
+  build:
+    docker:
+      - image: cimg/base:2020.09
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /data
+      - setup_remote_docker:
+         version: 19.03.13
+      - run:
+          name: build docker image
+          command: |
+            cd docker_build
+            tar xvfJ /data/4s.tar.xz
+            docker build -t pennlinc/atlaspack:latest
+
+
+
+workflows:
+  example:
+    jobs:
+      - package_data
+      - build:
+          requires:
+            - package_data
