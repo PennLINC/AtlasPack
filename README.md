@@ -5,7 +5,7 @@ The `CIT168`, `thalamic_atlas`, `cerebellum` and `schaefer_map`
 directories contain scripts that download the atlases from the
 internet and process them so they are in NLin6 and NLin2009cAsym
 space. The labels are also converted to tsvs with `index` and `name`
-columns.
+columns. 
 
 
 # Harmonizing the QSIPrep and XCP-D atlases
