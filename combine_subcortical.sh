@@ -12,8 +12,8 @@ datalad run \
   -o "tpl-MNI152NLin2009cAsym_atlas-SubcorticalMerged_res-01_dseg.tsv" \
   -o "tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.nii.gz" \
   -o "tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv" \
-  -o "schaefer_map/*_dseg.nii.gz" \
-  -o "schaefer_map/*_dseg.tsv" \
+  -o "Schaefer/*_dseg.nii.gz" \
+  -o "Schaefer/*_dseg.tsv" \
   "jupyter nbconvert --to notebook --execute --allow-errors JointAtlas.ipynb"
 
 

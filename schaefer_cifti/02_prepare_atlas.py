@@ -41,7 +41,7 @@ def reorient(in_file, target_file, out_file):
 def download_schaefer_cifti(n_parcels):
     """Download Schaefer files from official source."""
     # github link
-    # NOTE: Same SHA as schaefer_map script.
+    # NOTE: Same SHA as Schaefer script.
     remote_path = (
         "https://github.com/ThomasYeoLab/CBIG/raw/eca7bc9f63d732834f74b44beac30af360608347/"
         "stable_projects/brain_parcellation/Schaefer2018_LocalGlobal/Parcellations/"
@@ -165,10 +165,10 @@ def combine_metadata(n_parcels):
     subcortical_metadata_file = "../atlas-SubcorticalMerged_dseg.json"
     subcortical_labels_file = "../tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv"
     schaefer_labels_file = (
-        f"../schaefer_map/atlas-{schf_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.tsv"
+        f"../Schaefer/atlas-{schf_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.tsv"
     )
     schaefer_nifti_metadata_file = (
-        f"../schaefer_map/atlas-{schf_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.json"
+        f"../Schaefer/atlas-{schf_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.json"
     )
     merged_cifti_metadata_file = f"../tpl-fsLR_atlas-{atlas_name}Parcels_dseg.json"
     merged_nifti_metadata_file = f"../tpl-MNI152NLin6Asym_atlas-{atlas_name}Parcels_dseg.json"
