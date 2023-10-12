@@ -99,7 +99,8 @@ def map_schaefer_orders(n_parcels):
         },
     }
     with open(
-        f"atlas-Schaefer2018v0143_desc-{n_parcels}ParcelsAllNetworks_dseg.json", "w"
+        f"atlas-Schaefer2018v0143_desc-{n_parcels}ParcelsAllNetworks_dseg.json",
+        "w",
     ) as fo:
         json.dump(merge_dict, fo, sort_keys=True, indent=4)
 

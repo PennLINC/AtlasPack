@@ -59,6 +59,8 @@ if __name__ == "__main__":
     labeldf = pd.DataFrame({"index": cit_hemi_ids, "name": cit_hemi_labels})
     labeldf.to_csv(output_cit_prefix + ".tsv", sep="\t", index=False)
 
-    final_nii = nb.Nifti1Image(hemi_cit_data, cit_168_img.affine, header=cit_168_img.header)
+    final_nii = nb.Nifti1Image(
+        hemi_cit_data, cit_168_img.affine, header=cit_168_img.header
+    )
 
     final_nii.to_filename(output_cit_prefix + ".nii.gz")

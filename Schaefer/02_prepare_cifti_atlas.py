@@ -59,6 +59,7 @@ def download_schaefer_cifti(n_parcels):
 
 
 def download_templates():
+    """Download templates."""
     import os
     import shutil
 
@@ -93,9 +94,10 @@ def download_templates():
 
 def prepare_subcortical_atlas(n_parcels):
     """Create "label list file" to use with ``wb_command -volume-label-import``."""
-    labels_file = "../tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv"
-    atlas_file = "tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_dseg.nii.gz"
+    labels_file = "../subcortical_merged/tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv"
+    atlas_file = "../subcortical_merged/tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_dseg.nii.gz"
     resampled_atlas_file = (
+        "../subcortical_merged/"
         "tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_desc-resampled_dseg.nii.gz"
     )
     target_file = "Atlas_ROIs.2.nii.gz"

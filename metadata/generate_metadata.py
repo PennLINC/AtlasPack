@@ -17,7 +17,7 @@ def generate_subcortical_metadata():
         ],
         "License": "Creative Commons license CC BY-ND (Attribution - No derivatives)",
         "Curators": [
-            "Diedrichsen J"
+            "Diedrichsen J",
         ],
         "Name": "Multi-domain task battery (MDTB) cerebellar parcellation",
         "Description": (
@@ -36,7 +36,7 @@ def generate_subcortical_metadata():
                 "Diedrichsen, J. (2019). Functional Boundaries in the Human Cerebellum revealed"
                 "by a Multi-Domain Task Battery. Nat. Neurosci."
             ),
-        ]
+        ],
     }
 
     thalamic_sidecar = {
@@ -50,7 +50,7 @@ def generate_subcortical_metadata():
             "P. Maeder",
             "J.P. Thiran",
             "E. Fornari",
-            "M. Bach Cuadra"
+            "M. Bach Cuadra",
         ],
         "License": (
             "Creative Commons Attribution Share Alike 4.0 International "
@@ -72,20 +72,20 @@ def generate_subcortical_metadata():
                 "atlas of human thalamic nuclei based on diffusion-weighted magnetic resonance "
                 "imaging. Sci Data 5, 180270 (2018). https://doi.org/10.1038/sdata.2018.270"
             ),
-        ]
+        ],
     }
 
     subcortical_sidecar = {
         "Authors": [
             "W.M. Pauli",
             "A.N. Nili",
-            "J.M. Tyszka"
+            "J.M. Tyszka",
         ],
         "Curators": [
             "W.M. Pauli",
             "A.N. Nili",
             "J.M. Tyszka",
-            "M. Okamoto"
+            "M. Okamoto",
         ],
         "License": (
             "MIT: https://github.com/jmtyszka/CIT168-SubCorticalAtlas/blob/master/LICENSE.md"
@@ -108,7 +108,23 @@ def generate_subcortical_metadata():
                 "of human subcortical brain nuclei. Sci Data 5, 180063 (2018). "
                 "https://doi.org/10.1038"
             ),
-        ]
+        ],
+    }
+
+    hcp_sidecar = {
+        "Authors": [],
+        "License": "",
+        "Name": "HCP Subcortical Parcellation",
+        "Description": (
+            "The hippocampus and amygdala regions from the HCP subcortical atlas were selected."
+        ),
+        "ReferencesAndLinks": [
+            (
+                "https://github.com/Washington-University/HCPpipelines/blob/"
+                "21c0867c7f3a59554b9e28f5fe5cddd41e159170/global/templates/"
+                "170494_Greyordinates/Atlas_ROIs.1.60.nii.gz"
+            ),
+        ],
     }
 
     merged_sidecar = {
@@ -116,12 +132,15 @@ def generate_subcortical_metadata():
             "M. Cieslak",
             "T. Salo",
             "E. Feczko",
-            "T.D. Satterthwaite"
+            "T.D. Satterthwaite",
         ],
         "License": "Creative Commons license CC BY-ND (Attribution - No derivatives)",
         "BIDSVersion": "1.8.0",
         "Curators": [
-            "M. Cieslak", "T. Salo", "E. Feczko", "T.D. Satterthwaite"
+            "M. Cieslak",
+            "T. Salo",
+            "E. Feczko",
+            "T.D. Satterthwaite",
         ],
         "Name": "Non-Cortical Atlases in Template Space NCATS",
         "Description": (
@@ -149,14 +168,15 @@ def generate_subcortical_metadata():
             "MN": "Mammilary Nucleus",
         },
         "Resolution": {
-            "01": "1mm, isotropic"
+            "01": "1mm, isotropic",
         },
         # These match up with the `atlas_name` column
         "SourceAtlases": {
             "CIT168Subcortical": subcortical_sidecar,
             "Cerebellum": cb_sidecar,
-            "ThalamusHCP": thalamic_sidecar
-        }
+            "ThalamusHCP": thalamic_sidecar,
+            "HCPSubcortical": hcp_sidecar,
+        },
     }
 
     with open("../subcortex_merged/atlas-SubcorticalMerged_dseg.json", "w") as atl_json:
@@ -170,7 +190,8 @@ def combine_metadata(n_parcels):
 
     subcortical_metadata_file = "../subcortex_merged/atlas-SubcorticalMerged_dseg.json"
     subcortical_labels_file = (
-        "../subcortex_merged/tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv"
+        "../subcortex_merged/"
+        "tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv"
     )
     schaefer_labels_file = (
         f"../Schaefer/atlas-{schf_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.tsv"
@@ -239,7 +260,9 @@ def combine_metadata(n_parcels):
         ],
     }
 
+    # fmt:off
     atlas_metadata["Name"] = f"{atlas_name}: Schaefer Supplemented with Subcortical Structures"
+    # fmt:on
     atlas_metadata["Description"] = (
         f"A set of non-cortical atlases and the Schaefer {n_parcels}-parcel cortical atlas, "
         "that have been merged together in template space."
