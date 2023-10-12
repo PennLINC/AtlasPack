@@ -4,7 +4,10 @@ import sys
 import nibabel as nb
 import numpy as np
 import pandas as pd
-from merge_atlases import verify_atlas
+
+sys.path.append("..")
+
+from utils import verify_atlas
 
 
 if __name__ == "__main__":
@@ -49,18 +52,20 @@ if __name__ == "__main__":
     hemi_cit_data = (cit168_data + offsetmask) * (cit168_data > 0)
 
     # Split regions into hemispheres
-    cit_hemi_labels = ["CIT168Subcortical_LH-" + name for name in merged_cit_labels] + [
-        "CIT168Subcortical_RH-" + name for name in merged_cit_labels
+    cit_hemi_labels = [f"CIT168Subcortical_LH-{name}" for name in merged_cit_labels] + [
+        f"CIT168Subcortical_RH-{name}" for name in merged_cit_labels
     ]
     cit_hemi_ids = merged_cit_ids + [_id + 100 for _id in merged_cit_ids]
     cit_hemi_config = {"node_ids": cit_hemi_ids, "node_names": cit_hemi_labels}
     verify_atlas(cit_hemi_config, hemi_cit_data)
 
     labeldf = pd.DataFrame({"index": cit_hemi_ids, "name": cit_hemi_labels})
-    labeldf.to_csv(output_cit_prefix + ".tsv", sep="\t", index=False)
+    labeldf.to_csv(f"{output_cit_prefix}.tsv", sep="\t", index=False)
 
     final_nii = nb.Nifti1Image(
-        hemi_cit_data, cit_168_img.affine, header=cit_168_img.header
+        hemi_cit_data,
+        cit_168_img.affine,
+        header=cit_168_img.header,
     )
 
-    final_nii.to_filename(output_cit_prefix + ".nii.gz")
+    final_nii.to_filename(f"{output_cit_prefix}.nii.gz")

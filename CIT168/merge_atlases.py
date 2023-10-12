@@ -1,1 +1,0 @@
-../atlas_merging/merge_atlases.py

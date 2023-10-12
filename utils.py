@@ -56,6 +56,9 @@ def verify_atlas(atlas_config, atlas_data):
         if node_id not in data_regions:
             raise Exception(f"{node_id}: {node_name} not in atlas data")
 
+    if not len(atlas_config["node_ids"]) == len(atlas_config["node_names"]):
+        raise Exception("Inconsistent number of node names and ids")
+
     missing_regions = set(atlas_config["node_ids"]).difference(data_regions)
     if missing_regions:
         raise Exception(f"{missing_regions} present in data but not in labels")
