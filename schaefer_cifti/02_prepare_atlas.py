@@ -1,6 +1,5 @@
 """Download fsLR-32k CIFTI versions of the Schaefer 2018 7-network atlses."""
 import itertools
-import json
 import os
 
 import nibabel as nb
@@ -157,142 +156,9 @@ def prepare_subcortical_atlas(n_parcels):
         fo.write(out_str)
 
 
-def combine_metadata(n_parcels):
-    """Combine metadata."""
-    atlas_name = f"4S{n_parcels + 52}"
-    schf_name = "Schaefer2018v0143"
-
-    subcortical_metadata_file = "../atlas-SubcorticalMerged_dseg.json"
-    subcortical_labels_file = "../tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv"
-    schaefer_labels_file = (
-        f"../Schaefer/atlas-{schf_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.tsv"
-    )
-    schaefer_nifti_metadata_file = (
-        f"../Schaefer/atlas-{schf_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.json"
-    )
-    merged_cifti_metadata_file = f"../tpl-fsLR_atlas-{atlas_name}Parcels_dseg.json"
-    merged_nifti_metadata_file = f"../tpl-MNI152NLin6Asym_atlas-{atlas_name}Parcels_dseg.json"
-    merged_labels_file = f"../atlas-{atlas_name}Parcels_dseg.tsv"
-
-    with open(subcortical_metadata_file, "r") as fo:
-        subcortical_metadata = json.load(fo)
-
-    with open(schaefer_nifti_metadata_file, "r") as fo:
-        schaefer_nifti_metadata = json.load(fo)
-
-    # Base merged metadata on subcortical metadata
-    atlas_metadata = subcortical_metadata.copy()
-
-    schaefer_metadata = {
-        "Authors": [
-            "A Schaefer",
-            "R Kong",
-            "E.M. Gordon",
-            "T.O. Laumann",
-            "X. Zuo",
-            "A.J. Holmes",
-            "S.B. Eickhoff",
-            "B.T. Yeo",
-        ],
-        "Curators": [
-            "A Schaefer",
-            "R Kong",
-            "E.M. Gordon",
-            "T.O. Laumann",
-            "X. Zuo",
-            "A.J. Holmes",
-            "S.B. Eickhoff",
-            "B.T. Yeo",
-        ],
-        "License": (
-            "MIT: https://github.com/ThomasYeoLab/CBIG/blob/"
-            "a8c7a0bb845210424ef1c46d1435fec591b2cf3d/LICENSE.md"
-        ),
-        "Name": schf_name,
-        "Description": (
-            "Resting state fMRI data from 1489 subjects were registered using surface-based "
-            "alignment. A gradient weighted markov random field approach was employed to "
-            "identify cortical parcels ranging from 100 to 1000 parcels. "
-            "More details can be found in Schaefer et al. 2018."
-        ),
-        "ReferencesAndLinks": [
-            (
-                "https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/"
-                "brain_parcellation/Schaefer2018_LocalGlobal"
-            ),
-            (
-                "Schaefer, A., Kong, R., Gordon, E. M., Laumann, T. O., Zuo, X. N., "
-                "Holmes, A. J., Eickhoff, S. B., & Yeo, B. T. (2018). "
-                "Local-global parcellation of the human cerebral cortex from intrinsic "
-                "functional connectivity MRI. Cerebral cortex, 28(9), 3095-3114."
-            ),
-        ],
-    }
-
-    atlas_metadata["Name"] = f"{atlas_name}: Schaefer Supplemented with Subcortical Structures"
-    atlas_metadata["Description"] = (
-        f"A set of non-cortical atlases and the Schaefer {n_parcels}-parcel cortical atlas, "
-        "that have been merged together in template space."
-    )
-    atlas_metadata["SourceAtlases"][schf_name] = schaefer_metadata
-
-    # Add descriptions of column names
-    atlas_metadata.update(schaefer_nifti_metadata)
-
-    with open(merged_nifti_metadata_file, "w") as fo:
-        json.dump(atlas_metadata, fo, sort_keys=True, indent=4)
-
-    # Add info about space and resolution.
-    # Remove resolution field, since this is CIFTI data
-    atlas_metadata.pop("Resolution")
-    # Add density field
-    atlas_metadata["Density"] = {
-        "91k": (
-            "91282 vertices. "
-            "29696 surface vertices in left hemisphere. "
-            "29716 surface vertices in right hemisphere. "
-            "31870 subcortical voxels, at 2 mm isotropic resolution."
-        ),
-        "32k": "32492 vertices per hemisphere. No subcortical data.",
-    }
-    # Taken from https://bids-specification.readthedocs.io/en/stable/05-derivatives/\
-    # 02-common-data-types.html#examples_1
-    # The VolumeReference applies to the merged atlases, but not the Schaefer-only atlases.
-    atlas_metadata["SpatialReference"] = {
-        "VolumeReference": (
-            "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-01_T1w.nii.gz"
-        ),
-        "CIFTI_STRUCTURE_CORTEX_LEFT": (
-            "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/"
-            "Conte69.L.midthickness.32k_fs_LR.surf.gii"
-        ),
-        "CIFTI_STRUCTURE_CORTEX_RIGHT": (
-            "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/"
-            "Conte69.R.midthickness.32k_fs_LR.surf.gii"
-        ),
-    }
-
-    with open(merged_cifti_metadata_file, "w") as fo:
-        json.dump(atlas_metadata, fo, sort_keys=True, indent=4)
-
-    subcortical_labels = pd.read_table(subcortical_labels_file, index_col="index")
-    schaefer_labels = pd.read_table(schaefer_labels_file, index_col="index")
-    schaefer_labels["atlas_name"] = atlas_name
-    merged_labels = pd.concat(
-        (schaefer_labels, subcortical_labels),
-        axis=0,
-        join="outer",
-        ignore_index=True,
-    )
-    # Start index at 1
-    merged_labels.index = merged_labels.index + 1
-    merged_labels.to_csv(merged_labels_file, sep="\t", index_label="index", na_rep="n/a")
-
-
 if __name__ == "__main__":
     download_templates()
 
     for n_parcels in tqdm([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]):
         download_schaefer_cifti(n_parcels)
         prepare_subcortical_atlas(n_parcels)
-        combine_metadata(n_parcels)

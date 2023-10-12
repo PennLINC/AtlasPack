@@ -43,7 +43,9 @@ def map_schaefer_orders(n_parcels):
     assert coord_merge.shape[0] == centroids_inorder.shape[0]
 
     coord_merge["network_label"] = coord_merge["label_7network"].apply(_get_network)
-    coord_merge["network_label_17network"] = coord_merge["label_17network"].apply(_get_network)
+    coord_merge["network_label_17network"] = coord_merge["label_17network"].apply(
+        _get_network
+    )
 
     # Sort columns and drop unused ones
     coord_merge = coord_merge[
