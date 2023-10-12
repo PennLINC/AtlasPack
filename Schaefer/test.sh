@@ -1,3 +1,4 @@
+# This is an example script to show how NIFTI-to-CIFTI conversion is done.
 # Written by Eric Feczko.
 subcort_nii="tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_desc-Schaefer2018v0143100Parcels_dseg.nii.gz"
 subcort_labels="tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-02_desc-Schaefer2018v0143100Parcels_labellist.txt"

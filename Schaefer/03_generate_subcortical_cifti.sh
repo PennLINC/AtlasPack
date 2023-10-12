@@ -8,8 +8,8 @@ for order in 100 200 300 400 500 600 700 800 900 1000
 do
     echo $order
 
-    # There are 52 subcortical parcels
-    n_parcels=$((order + 52))
+    # There are 56 subcortical parcels
+    n_parcels=$((order + 56))
 
     # First, we remove a bunch of vertices from the Schaefer atlases
     # Split the Schaefer into right and left hemispheres

@@ -1,3 +1,4 @@
+# Enter a Docker image to potentially run code.
 docker run -it \
     -v /Users/taylor/Documents/tsalo/AtlasPack:/AtlasPack \
     -v /Users/taylor/.cache/templateflow:/templateflow \
