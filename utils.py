@@ -37,13 +37,13 @@ def roi_data(nii_file):
 def get_region_data(tsv_file):
     """Get region data."""
     df = pd.read_table(tsv_file)
-    return df['index'].tolist(), df['name'].tolist()
+    return df["index"].tolist(), df["name"].tolist()
 
 
 def tsv_to_config(tsv_file):
     """Convert TSV to a config dictionary."""
     config = {}
-    config['node_ids'], config['node_names'] = get_region_data(tsv_file)
+    config["node_ids"], config["node_names"] = get_region_data(tsv_file)
     return config
 
 
@@ -51,12 +51,12 @@ def verify_atlas(atlas_config, atlas_data):
     """Verify atlas."""
     data_regions = np.unique(atlas_data)
     data_regions = data_regions[data_regions > 0].tolist()
-    for node_id, node_name in zip(atlas_config['node_ids'], atlas_config['node_names']):
+    for node_id, node_name in zip(atlas_config["node_ids"], atlas_config["node_names"]):
         if node_id not in data_regions:
             raise Exception(f"{node_id}: {node_name} not in atlas data")
 
-    missing_regions = set(atlas_config['node_ids']).difference(data_regions)
-    if  missing_regions:
+    missing_regions = set(atlas_config["node_ids"]).difference(data_regions)
+    if missing_regions:
         raise Exception(f"{missing_regions} present in data but not in labels")
 
 
@@ -79,10 +79,13 @@ def add_atlas_to_another(
     # value in the new ids for atlas2 after it's been added to atlas1
     merged_atlas_min = np.max(atlas1_data) + 1
     atlas2_id_mapping = dict(
-        zip(atlas2_config['node_ids'], np.argsort(atlas2_config['node_ids']) + merged_atlas_min)
+        zip(
+            atlas2_config["node_ids"],
+            np.argsort(atlas2_config["node_ids"]) + merged_atlas_min,
+        )
     )
     atlas2_merged_ids = [
-        atlas2_id_mapping[node_id] for node_id in atlas2_config['node_ids']
+        atlas2_id_mapping[node_id] for node_id in atlas2_config["node_ids"]
     ]
 
     # Make sure that any voxels that are labeled in the base image
@@ -96,10 +99,8 @@ def add_atlas_to_another(
     remapped_atlas2 = remap_values(atlas2_data, atlas2_id_mapping)
 
     merged_image_data = atlas1_data + remapped_atlas2
-    merged_image_labels = (
-        atlas1_config['node_names'] + atlas2_config['node_names']
-    )
-    merged_image_ids = atlas1_config['node_ids'] + atlas2_merged_ids
+    merged_image_labels = atlas1_config["node_names"] + atlas2_config["node_names"]
+    merged_image_ids = atlas1_config["node_ids"] + atlas2_merged_ids
     merged_atlas_config = {
         "node_names": merged_image_labels,
         "node_ids": merged_image_ids,
@@ -110,10 +111,10 @@ def add_atlas_to_another(
 
 def expand_df(df):
     """Expand DataFrame."""
-    spl = df['name'].str.split("_", n=1, expand=True)
-    df['label'] = spl[1]
-    df['network_id'] = np.nan
-    df['network_label'] = np.nan
-    df['atlas_name'] = spl[0]
+    spl = df["name"].str.split("_", n=1, expand=True)
+    df["label"] = spl[1]
+    df["network_id"] = np.nan
+    df["network_label"] = np.nan
+    df["atlas_name"] = spl[0]
     df.drop("name", axis=1, inplace=True)
     return df
