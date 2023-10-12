@@ -38,7 +38,7 @@ def get_region_data(tsv_file):
     """Get region data."""
     df = pd.read_table(tsv_file)
     # In Volumetric4S it has "label", in VolumetricMerging it has "name"
-    return df["index"].tolist(), df["name"].tolist()
+    return df["index"].tolist(), df["label"].tolist()
 
 
 def tsv_to_config(tsv_file):
