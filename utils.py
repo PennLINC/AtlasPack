@@ -37,6 +37,7 @@ def roi_data(nii_file):
 def get_region_data(tsv_file):
     """Get region data."""
     df = pd.read_table(tsv_file)
+    # In Volumetric4S it has "label", in VolumetricMerging it has "name"
     return df["index"].tolist(), df["name"].tolist()
 
 
@@ -118,3 +119,27 @@ def expand_df(df):
     df["atlas_name"] = spl[0]
     df.drop("name", axis=1, inplace=True)
     return df
+
+
+def check_grids(atlas_files):
+    """Check grids in atlas files."""
+    print("checking files:")
+    print("\n  " + "\n  ".join(atlas_files))
+
+    print("\ncomparing grids:")
+    ref_img = nb.load(atlas_files.pop())
+
+    for try_file in atlas_files:
+        try_img = nb.load(try_file)
+        if not np.allclose(try_img.affine, ref_img.affine):
+            raise Exception(
+                "incompatible affines:", try_img, try_img.affine, ref_img.affine
+            )
+
+        if not try_img.shape == ref_img.shape:
+            raise Exception(
+                "incompatible shapes:", try_img, try_img.shape, ref_img.shape
+            )
+        print(try_img.shape, "==", ref_img.shape)
+
+    print("All grids match orientation and shape!!")
