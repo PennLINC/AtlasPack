@@ -13,7 +13,7 @@ with open("Thalamic_Nuclei-ColorLUT.txt", "r") as f:
         roinum, roilabel, r, g, b, a = line.split()
         indexes.append(int(roinum))
         names.append(roilabel)
-        colors.append("%02x%02x%02x" % (int(r), int(g), int(b)))
+        colors.append(f"{int(r):02}x{int(g):02}x{int(b):02}x")
 
 df = pd.DataFrame({"index": indexes, "name": names, "color": colors})
 

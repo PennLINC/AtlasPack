@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Split up the CIT168 atlas."""
 import sys
 
 import nibabel as nb
@@ -7,8 +8,7 @@ import pandas as pd
 
 sys.path.append("..")
 
-from utils import verify_atlas
-
+from utils import verify_atlas  # noqa: E402
 
 if __name__ == "__main__":
     input_cit_file, output_cit_prefix = sys.argv[1:]

@@ -20,12 +20,14 @@ if __name__ == "__main__":
             },
         }
     )
+    df_sel.to_csv("atlas-HPandAMYG_dseg.tsv", sep="\t", na_rep="n/a")
+
+    # Find values associated with hippocampus and amygdala.
     rois_to_retain = df_sel["index"].values
 
+    # Split out hippocampus and amygdala from 1.6 mm atlas
     img = nb.load("tpl-MNI152NLin6Asym_atlas-HCP_res-06_dseg.nii.gz")
     data = img.get_fdata()
     masked_data = np.isin(data, rois_to_retain) * data
     sel_img = nb.Nifti1Image(masked_data, affine=img.affine, header=img.header)
     sel_img.to_filename("tpl-MNI152NLin6Asym_atlas-HPandAMYG_res-06_dseg.nii.gz")
-
-    df_sel.to_csv("atlas-HPandAMYG_dseg.tsv", sep="\t", na_rep="n/a")
