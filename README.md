@@ -68,9 +68,9 @@ This atlas is in NLin6 space and the shasum of the repository was  fd12c94.
 Atlas is in FNIRT space - standard FSL space is MNI152NLin6Asym
 
 
-## Subcortical (CIT168)
+### Subcortical (CIT168)
 
-A high-resolutionprobabilistic in vivo atlas of humansubcortical brain nuclei
+A high-resolution probabilistic in vivo atlas of humansubcortical brain nuclei
 In Scientific Data by Wolfgang M. Pauli, Amanda N. Nili & J. Michael Tyszka
 
 We used the CIT168 atlas for subcortical regions. There are a couple problems
@@ -86,3 +86,14 @@ CIT168 atlas does not separate regions into hemispheres, so we need to split it
 into left and right hemispheres.  We do this based on the midline of the x-axis.
 
 
+### Cortical (Schaefer)
+
+Schaefer atlases were downloaded from
+https://github.com/ThomasYeoLab/CBIG/raw/eca7bc9f63d732834f74b44beac30af360608347/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal/Parcellations/.
+
+For CIFTIs the `Schaefer2018_<n_parcels>Parcels_7Networks_order.dlabel.nii` files were downloaded from the
+`HCP/fslr32k/cifti` subfolder.
+For NIfTIs the `Schaefer2018_<n_parcels>Parcels_7Networks_order_FSLMNI152_1mm.nii.gz` files were downloaded
+from the `MNI` subfolder.
+
+For the CIFTI files, the medial walls were removed.
