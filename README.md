@@ -114,3 +114,23 @@ Reference:
 > Eickhoff, S. B., & Yeo, B. T. (2018).
 > Local-global parcellation of the human cerebral cortex from intrinsic functional connectivity MRI.
 > *Cerebral cortex*, 28(9), 3095-3114.
+
+
+## Requirements
+
+- git
+- git-annex
+- git-annex-remote-osf
+- datalad
+- wget
+- antsApplyTransforms
+- wb_command
+- 3dresample
+- singularity (only to generate transforms)
+- Python 3.8+
+    - pandas
+    - nibabel
+    - numpy
+    - wget
+    - tqdm
+    - scipy
