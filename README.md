@@ -123,10 +123,10 @@ Reference:
 - git-annex-remote-osf
 - datalad
 - wget
-- antsApplyTransforms
-- wb_command
-- 3dresample
-- singularity (only to generate transforms)
+- ANTS (antsApplyTransforms)
+- Connectome Workbench (wb_command)
+- AFNI (3dresample)
+- Singularity (only to generate transforms)
 - Python 3.8+
     - pandas
     - nibabel
