@@ -15,5 +15,3 @@ datalad run \
   -o "Schaefer/*_dseg.nii.gz" \
   -o "Schaefer/*_dseg.tsv" \
   "jupyter nbconvert --to notebook --execute --allow-errors JointAtlas.ipynb"
-
-
