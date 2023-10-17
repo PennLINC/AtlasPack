@@ -95,12 +95,20 @@ Reference:
 > A high-resolution probabilistic in vivo atlas of human subcortical brain nuclei.
 > *Scientific data*, 5(1), 1-13.
 
+
 ### Hippocampus and Amygdala (HCP)
 
 The CIT168 atlas does not include hippocampus or amygdala,
-so we have added these structures, taken from the HCP atlas.
+so we have added these structures, taken from the HCP subcortical CIFTI structures atlas.
 
 The NIfTI file is `tpl-MNI152NLin6Asym_res-06_atlas-HCP_dseg.nii.gz` from TemplateFlow.
+
+Reference:
+
+> Glasser, M. F., Sotiropoulos, S. N., Wilson, J. A., Coalson, T. S., Fischl, B.,
+> Andersson, J. L., ... & Wu-Minn HCP Consortium. (2013).
+> The minimal preprocessing pipelines for the Human Connectome Project.
+> *Neuroimage*, 80, 105-124.
 
 
 ### Cortex (Schaefer)
@@ -128,9 +136,15 @@ Reference:
 - AFNI (3dresample)
 - Singularity (only to generate transforms)
 - Python 3.8+
-    - pandas
     - nibabel
     - numpy
-    - wget
-    - tqdm
+    - pandas
     - scipy
+    - tqdm
+    - wget
+
+
+## To regenerate the atlases
+
+1. `bash 01_combine_subcortical.sh`
+2. `bash 02_supplement_schaefers.sh`

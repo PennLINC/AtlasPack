@@ -112,8 +112,25 @@ def generate_subcortical_metadata():
     }
 
     hcp_sidecar = {
-        "Authors": [],
-        "License": "",
+        "Authors": [
+            "M.F. Glasser",
+            "S.N. Sotiropoulos",
+            "J.A. Wilson",
+            "T.S. Coalson",
+            "B. Fischl",
+            "J.L. Andersson",
+            "J. Xu",
+            "S. Jbabdi",
+            "M. Webster",
+            "J.R. Polimeni",
+            "D.C. Van Essen",
+            "M. Jenkinson",
+            "The WU-Minn HCP Consortium",
+        ],
+        "License": (
+            "https://github.com/Washington-University/HCPpipelines/blob/"
+            "21c0867c7f3a59554b9e28f5fe5cddd41e159170/LICENSE.md"
+        ),
         "Name": "HCP Subcortical Parcellation",
         "Description": (
             "The hippocampus and amygdala regions from the HCP subcortical atlas were selected."
@@ -123,6 +140,12 @@ def generate_subcortical_metadata():
                 "https://github.com/Washington-University/HCPpipelines/blob/"
                 "21c0867c7f3a59554b9e28f5fe5cddd41e159170/global/templates/"
                 "170494_Greyordinates/Atlas_ROIs.1.60.nii.gz"
+            ),
+            (
+                "Glasser, M. F., Sotiropoulos, S. N., Wilson, J. A., Coalson, T. S., Fischl, B., "
+                "Andersson, J. L., ... & Wu-Minn HCP Consortium. (2013). "
+                "The minimal preprocessing pipelines for the Human Connectome Project. "
+                "Neuroimage, 80, 105-124."
             ),
         ],
     }
