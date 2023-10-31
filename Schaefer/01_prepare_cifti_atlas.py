@@ -85,11 +85,11 @@ def download_templates():
             extension=".label.gii",
         )
     )
-    if not os.path.isfile(os.path.basename(rh)):
-        shutil.copyfile(rh, os.path.basename(rh))
+    if not os.path.exists(os.path.basename(rh)):
+        shutil.copy2(rh, os.path.basename(rh))
 
-    if not os.path.isfile(os.path.basename(lh)):
-        shutil.copyfile(lh, os.path.basename(lh))
+    if not os.path.exists(os.path.basename(lh)):
+        shutil.copy2(lh, os.path.basename(lh))
 
 
 def prepare_subcortical_atlas(n_parcels):
