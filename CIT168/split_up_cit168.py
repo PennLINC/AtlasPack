@@ -59,7 +59,7 @@ if __name__ == "__main__":
     cit_hemi_config = {"node_ids": cit_hemi_ids, "node_names": cit_hemi_labels}
     verify_atlas(cit_hemi_config, hemi_cit_data)
 
-    labeldf = pd.DataFrame({"index": cit_hemi_ids, "name": cit_hemi_labels})
+    labeldf = pd.DataFrame({"index": cit_hemi_ids, "label": cit_hemi_labels})
     labeldf.to_csv(f"{output_cit_prefix}.tsv", sep="\t", index=False)
 
     final_nii = nb.Nifti1Image(

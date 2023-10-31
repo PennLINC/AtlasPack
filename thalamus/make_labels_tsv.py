@@ -15,6 +15,6 @@ with open("Thalamic_Nuclei-ColorLUT.txt", "r") as f:
         names.append(roilabel)
         colors.append(f"{int(r):02}x{int(g):02}x{int(b):02}x")
 
-df = pd.DataFrame({"index": indexes, "name": names, "color": colors})
+df = pd.DataFrame({"index": indexes, "label": names, "color": colors})
 
 df.to_csv("atlas-hcpthalamus.tsv", index=False, sep="\t")

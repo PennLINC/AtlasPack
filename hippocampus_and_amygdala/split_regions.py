@@ -20,7 +20,7 @@ if __name__ == "__main__":
             },
         }
     )
-    df_sel.to_csv("atlas-HPandAMYG_dseg.tsv", sep="\t", na_rep="n/a")
+    df_sel.to_csv("atlas-HPandAMYG_dseg.tsv", sep="\t", na_rep="n/a", index=False)
 
     # Find values associated with hippocampus and amygdala.
     rois_to_retain = df_sel["index"].values
