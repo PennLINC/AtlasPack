@@ -222,11 +222,11 @@ def combine_metadata(n_parcels):
     schaefer_nifti_metadata_file = (
         f"../Schaefer/atlas-{schf_name}_desc-{n_parcels}ParcelsAllNetworks_dseg.json"
     )
-    merged_cifti_metadata_file = f"../4S/tpl-fsLR_atlas-{atlas_name}Parcels_dseg.json"
+    merged_cifti_metadata_file = f"../tpl-fsLR_atlas-{atlas_name}Parcels_dseg.json"
     merged_nifti_metadata_file = (
-        f"../4S/tpl-MNI152NLin6Asym_atlas-{atlas_name}Parcels_dseg.json"
+        f"../tpl-MNI152NLin6Asym_atlas-{atlas_name}Parcels_dseg.json"
     )
-    merged_labels_file = f"../4S/atlas-{atlas_name}Parcels_dseg.tsv"
+    merged_labels_file = f"../atlas-{atlas_name}Parcels_dseg.tsv"
 
     with open(subcortical_metadata_file, "r") as fo:
         subcortical_metadata = json.load(fo)
