@@ -202,7 +202,7 @@ def generate_subcortical_metadata():
         },
     }
 
-    with open("../subcortex_merged/atlas-SubcorticalMerged_dseg.json", "w") as atl_json:
+    with open("../subcortical_merged/atlas-SubcorticalMerged_dseg.json", "w") as atl_json:
         json.dump(merged_sidecar, atl_json, indent=4)
 
 
@@ -211,9 +211,9 @@ def combine_metadata(n_parcels):
     atlas_name = f"4S{n_parcels + 52}"
     schf_name = "Schaefer2018v0143"
 
-    subcortical_metadata_file = "../subcortex_merged/atlas-SubcorticalMerged_dseg.json"
+    subcortical_metadata_file = "../subcortical_merged/atlas-SubcorticalMerged_dseg.json"
     subcortical_labels_file = (
-        "../subcortex_merged/"
+        "../subcortical_merged/"
         "tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.tsv"
     )
     schaefer_labels_file = (
