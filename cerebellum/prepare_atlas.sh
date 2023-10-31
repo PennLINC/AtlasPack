@@ -35,3 +35,5 @@ antsApplyTransforms \
     -r ${TEMPLATEFLOW_HOME}/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_desc-brain_mask.nii.gz \
     --interpolation GenericLabel \
     -v 1
+
+sed -i '' 's/name/label/' atl-MDTB10.tsv
