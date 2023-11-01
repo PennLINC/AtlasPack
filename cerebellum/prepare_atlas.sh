@@ -36,3 +36,4 @@ antsApplyTransforms \
     --interpolation GenericLabel \
     -v 1
 
+sed -i '' 's/name/label/' atl-MDTB10.tsv
