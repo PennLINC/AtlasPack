@@ -208,7 +208,7 @@ def generate_subcortical_metadata():
 
 def combine_metadata(n_parcels):
     """Combine metadata."""
-    atlas_name = f"4S{n_parcels + 52}"
+    atlas_name = f"4S{n_parcels + 56}"
     schf_name = "Schaefer2018v0143"
 
     subcortical_metadata_file = "../subcortical_merged/atlas-SubcorticalMerged_dseg.json"
