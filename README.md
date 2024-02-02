@@ -144,6 +144,15 @@ Reference:
     - wget
 
 
+## To download the atlases
+
+1.  `datalad clone` the repository. Don't `git clone` it!
+    - e.g., `datalad clone https://github.com/PennLINC/AtlasPack.git`
+2.  Enter the cloned folder.
+    - `cd AtlasPack`
+3.  `datalad get` any files you want.
+    - e.g., `datalad get tpl-fsLR_*`
+
 ## To regenerate the atlases
 
 1. `bash 01_combine_subcortical.sh`
