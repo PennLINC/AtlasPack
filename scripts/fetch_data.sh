@@ -32,7 +32,9 @@ if [ -z "${version}" ]; then
 fi
 
 cd "${REPO_ROOT}"
-base_url="https://github.com/${GITHUB_REPO}/releases/download/${version}"
+# ATLASPACK_BASE_URL overrides the download location (e.g. a mirror, or a
+# file:// URL pointing at dist/<version> to test a release before uploading).
+base_url="${ATLASPACK_BASE_URL:-https://github.com/${GITHUB_REPO}/releases/download/${version}}"
 work_dir="$(mktemp -d)"
 trap 'rm -rf "${work_dir}"' EXIT
 
