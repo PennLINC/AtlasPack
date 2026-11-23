@@ -1,14 +1,16 @@
-datalad run \
-  --explicit \
-  --expand both \
-  -m "add merged subcortical atlas to Schaefer parcellations" \
-  -i "subcortical_merged/tpl-MNI152NLin6Asym_atlas-SubcorticalMerged_res-01_dseg.nii.gz" \
-  -i "subcortical_merged/tpl-MNI152NLin2009cAsym_atlas-SubcorticalMerged_res-01_dseg.nii.gz" \
-  -i "subcortical_merged/tpl-MNI152NLin2009cAsym_atlas-SubcorticalMerged_res-01_dseg.tsv" \
-  -i "Schaefer/tpl-MNI152NLin6Asym_atlas-Schaefer2018v0143_res-01_desc-*dseg.nii.gz" \
-  -i "Schaefer/tpl-MNI152NLin2009cAsym_atlas-Schaefer2018v0143_res-01_desc-*dseg.nii.gz" \
-  -i "Schaefer/atlas-Schaefer2018v0143_desc-*ParcelsAllNetworks_dseg.tsv" \
-  -i "atlas-4S*Parcels_dseg.tsv" \
-  -o "tpl-MNI152NLin*_atlas-4S*Parcels_res-01_dseg.nii.gz" \
-  -o "volumetric4S.html" \
-  "jupyter nbconvert --to html --execute Volumetric4S.ipynb"
+#!/usr/bin/env bash
+# Add the merged subcortical atlas to the volumetric Schaefer parcellations.
+#
+# Run 01_combine_subcortical.sh first; this script reads its outputs
+# (subcortical_merged/*, Schaefer/*_dseg.nii.gz, atlas-4S*Parcels_dseg.tsv)
+# and writes tpl-MNI152NLin*_atlas-4S*Parcels_res-01_dseg.nii.gz to the
+# repository root.
+#
+# The released BIDS-Atlas dataset lives in AtlasPack/. After regenerating,
+# copy changed images into AtlasPack/tpl-<space>/ under their BIDS names,
+# then run scripts/update_checksums.sh and commit the manifest changes.
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+jupyter nbconvert --to html --execute Volumetric4S.ipynb

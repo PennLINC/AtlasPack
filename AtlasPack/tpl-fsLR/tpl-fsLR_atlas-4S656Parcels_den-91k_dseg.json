@@ -1,0 +1,55 @@
+{
+    "Density": {
+        "32k": "32492 vertices per hemisphere. No subcortical data.",
+        "91k": "91282 vertices. 29696 surface vertices in left hemisphere. 29716 surface vertices in right hemisphere. 31870 subcortical voxels, at 2 mm isotropic resolution."
+    },
+    "RegionNames": {
+        "Ca": "Caudate Nucleus",
+        "EXA": "Extended Amygdala",
+        "GPe": "Globus Pallidus, External",
+        "GPi": "Globus Pallidus, Internal",
+        "HN": "Habenular Nuclei",
+        "HTH": "Hypothalamus",
+        "MN": "Mammilary Nucleus",
+        "NAC": "Nucleus Acumbens",
+        "PBP": "Parabrachial Pigmented Nucleus",
+        "Pu": "Putamen",
+        "RN": "Red Nucleus",
+        "SNc": "Substantia Nigra, Pars Compacta",
+        "SNr": "Substantia Nigra, Pars Reticulata",
+        "STH": "Subthalamic Nucleus",
+        "VTA": "Ventral Tegmental Area",
+        "VeP": "Ventral Pallidum"
+    },
+    "SpatialReference": {
+        "CIFTI_STRUCTURE_CORTEX_LEFT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
+        "CIFTI_STRUCTURE_CORTEX_RIGHT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii",
+        "VolumeReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-01_T1w.nii.gz"
+    },
+    "atlas_name": {
+        "Description": "Name of node's source atlas."
+    },
+    "index_17network": {
+        "Description": "The corresponding integer value of this node in the 17-network Schaefer atlas imaging file.",
+        "LongName": "Node index from Schaefer 17-network atlas"
+    },
+    "label_17network": {
+        "Description": "The label of the node as it appears in the canonical Schaefer 17-network atlas.",
+        "LongName": "Node label from Schaefer 17-network atlas"
+    },
+    "label_7network": {
+        "Description": "The label of the node as it appears in the canonical Schaefer 7-network atlas.",
+        "LongName": "Node label from Schaefer 7-network atlas"
+    },
+    "network_id": {
+        "Description": "Network identifier (currently unused)."
+    },
+    "network_label": {
+        "Description": "Base name of assigned network from Schaefer parcellation.",
+        "LongName": "Schaefer Network Label"
+    },
+    "network_label_17network": {
+        "Description": "The name of the network this node is assigned to in the Schaefer 17-network atlas.",
+        "LongName": "Network label from Schaefer 17-network atlas"
+    }
+}

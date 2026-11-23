@@ -7,6 +7,63 @@ internet and process them so they are in NLin6 and NLin2009cAsym space.
 The labels are also converted to tsvs with `index` and `name` columns.
 
 
+## Downloading the atlases
+
+The atlases are distributed as assets on each
+[GitHub release](https://github.com/PennLINC/AtlasPack/releases).
+You do not need DataLad, git-annex, or a clone of this repository.
+
+```bash
+VERSION=0.2.0
+curl -fsSLO "https://github.com/PennLINC/AtlasPack/releases/download/${VERSION}/atlaspack-${VERSION}.tar.gz"
+curl -fsSLO "https://github.com/PennLINC/AtlasPack/releases/download/${VERSION}/SHA256SUMS"
+sha256sum --ignore-missing -c SHA256SUMS
+tar -xzf "atlaspack-${VERSION}.tar.gz"
+```
+
+This creates an `AtlasPack/` directory in
+[BIDS-Atlas](https://bids-specification.readthedocs.io/) layout:
+
+```
+AtlasPack/
+    dataset_description.json
+    atlas-4S<N>Parcels_description.json
+    tpl-fsLR/
+        tpl-fsLR_atlas-4S<N>Parcels_den-91k_dseg.{dlabel.nii,json,tsv}
+    tpl-MNI152NLin6Asym/
+        tpl-MNI152NLin6Asym_atlas-4S<N>Parcels_res-01_dseg.{nii.gz,json,tsv}
+    tpl-MNI152NLin2009cAsym/
+        tpl-MNI152NLin2009cAsym_atlas-4S<N>Parcels_res-01_dseg.{nii.gz,json,tsv}
+```
+
+`<N>` is 156, 256, ..., 1056 (100-1000 Schaefer parcels plus 56 non-cortical regions).
+
+The same data are available as a Docker image, with the dataset at `/AtlasPack`:
+
+```dockerfile
+COPY --from=pennlinc/atlaspack:0.2.0 /AtlasPack /path/to/AtlasPack
+```
+
+Earlier copies of these atlases (the DataLad/OSF dataset, the Box tarball, and OSF project `ahf9u`)
+are superseded by the GitHub releases.
+
+
+### How the data are versioned
+
+The JSON and TSV files are tracked in git under `AtlasPack/`.
+The images are too large for git, so they are attached to the release instead,
+and their SHA-256 checksums are tracked in git in `checksums/atlaspack.sha256`.
+So each release tag records exactly which files that release contains.
+
+To fill a clone of this repository with the images for a release:
+
+```bash
+git checkout 0.2.0
+scripts/fetch_data.sh 0.2.0            # atlas images only
+scripts/fetch_data.sh --sources 0.2.0  # also the ~730 MB regeneration inputs
+```
+
+
 # Harmonizing the QSIPrep and XCP-D atlases
 
 There are many versions of MNI space.
@@ -124,12 +181,12 @@ Reference:
 > *Cerebral cortex*, 28(9), 3095-3114.
 
 
-## Requirements
+## Regenerating the atlases
 
-- git
-- git-annex
-- git-annex-remote-osf
-- datalad
+Requirements:
+
+- curl, tar, and sha256sum (or shasum)
+- jupyter (`nbconvert`)
 - wget
 - ANTS (antsApplyTransforms)
 - Connectome Workbench (wb_command)
@@ -143,17 +200,25 @@ Reference:
     - tqdm
     - wget
 
+Steps:
 
-## To download the atlases
+1. `scripts/fetch_data.sh --sources <version>` to get the transforms and intermediate files.
+2. `bash 01_combine_subcortical.sh`
+3. `bash 02_supplement_schaefers.sh`
+4. Copy any changed outputs into `AtlasPack/tpl-<space>/` under their BIDS names.
+5. `scripts/update_checksums.sh`, then commit the changes to `AtlasPack/` and `checksums/`.
 
-1.  `datalad clone` the repository. Don't `git clone` it!
-    - e.g., `datalad clone https://github.com/PennLINC/AtlasPack.git`
-2.  Enter the cloned folder.
-    - `cd AtlasPack`
-3.  `datalad get` any files you want.
-    - e.g., `datalad get tpl-fsLR_*`
 
-## To regenerate the atlases
+## Making a release (maintainers)
 
-1. `bash 01_combine_subcortical.sh`
-2. `bash 02_supplement_schaefers.sh`
+1. Make sure `AtlasPack/` and the regeneration sources are complete on disk
+   (`scripts/fetch_data.sh --sources <previous version>`, plus any regenerated files),
+   and that `scripts/update_checksums.sh` produces no changes.
+2. Merge to `main` and pull.
+3. `scripts/make_release.sh <new version>`.
+   This checks every file against the manifests, builds the tarballs in `dist/`,
+   and creates a **draft** GitHub release on the current commit.
+4. Review the draft on GitHub and publish it.
+   Publishing runs `.github/workflows/docker.yml`, which builds and pushes
+   `pennlinc/atlaspack:<version>` and `:latest` from the release assets.
+   That workflow needs the `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` repository secrets.

@@ -1,0 +1,17 @@
+{
+    "Name": "AtlasPack",
+    "BIDSVersion": "1.11.0",
+    "DatasetType": "derivative",
+    "GeneratedBy": [
+        {
+            "Name": "AtlasPack",
+            "CodeURL": "https://github.com/PennLINC/AtlasPack"
+        }
+    ],
+    "License": "CC BY-ND",
+    "Authors": [
+        "M. Cieslak",
+        "T. Salo",
+        "T.D. Satterthwaite"
+    ]
+}

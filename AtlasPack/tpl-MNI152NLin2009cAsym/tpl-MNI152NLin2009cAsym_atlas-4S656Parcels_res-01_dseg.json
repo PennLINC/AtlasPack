@@ -1,0 +1,50 @@
+{
+    "RegionNames": {
+        "Ca": "Caudate Nucleus",
+        "EXA": "Extended Amygdala",
+        "GPe": "Globus Pallidus, External",
+        "GPi": "Globus Pallidus, Internal",
+        "HN": "Habenular Nuclei",
+        "HTH": "Hypothalamus",
+        "MN": "Mammilary Nucleus",
+        "NAC": "Nucleus Acumbens",
+        "PBP": "Parabrachial Pigmented Nucleus",
+        "Pu": "Putamen",
+        "RN": "Red Nucleus",
+        "SNc": "Substantia Nigra, Pars Compacta",
+        "SNr": "Substantia Nigra, Pars Reticulata",
+        "STH": "Subthalamic Nucleus",
+        "VTA": "Ventral Tegmental Area",
+        "VeP": "Ventral Pallidum"
+    },
+    "Resolution": {
+        "01": "1mm, isotropic"
+    },
+    "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz",
+    "atlas_name": {
+        "Description": "Name of node's source atlas."
+    },
+    "index_17network": {
+        "Description": "The corresponding integer value of this node in the 17-network Schaefer atlas imaging file.",
+        "LongName": "Node index from Schaefer 17-network atlas"
+    },
+    "label_17network": {
+        "Description": "The label of the node as it appears in the canonical Schaefer 17-network atlas.",
+        "LongName": "Node label from Schaefer 17-network atlas"
+    },
+    "label_7network": {
+        "Description": "The label of the node as it appears in the canonical Schaefer 7-network atlas.",
+        "LongName": "Node label from Schaefer 7-network atlas"
+    },
+    "network_id": {
+        "Description": "Network identifier (currently unused)."
+    },
+    "network_label": {
+        "Description": "Base name of assigned network from Schaefer parcellation.",
+        "LongName": "Schaefer Network Label"
+    },
+    "network_label_17network": {
+        "Description": "The name of the network this node is assigned to in the Schaefer 17-network atlas.",
+        "LongName": "Network label from Schaefer 17-network atlas"
+    }
+}

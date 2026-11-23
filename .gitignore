@@ -90,3 +90,23 @@ scratch/
 
 notebooks/*
 !notebooks/*.ipynb
+
+# AtlasPack data. Large files live in GitHub release assets, not in git;
+# their checksums are tracked in checksums/. Fetch them with
+# scripts/fetch_data.sh.
+AtlasPack/**/*.nii.gz
+AtlasPack/**/*.dlabel.nii
+transforms/*.h5
+Schaefer/*.nii.gz
+Schaefer/*.label.gii
+subcortical_merged/*.nii.gz
+subcortex_merged/*.nii.gz
+._*
+
+# Outputs written to the repository root by the regeneration notebooks.
+/tpl-*_atlas-*
+/atlas-4S*_dseg.tsv
+/volumetric4S.html
+
+# Release build output from scripts/make_release.sh.
+/dist/
