@@ -1,5 +1,8 @@
 # AtlasPack
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24480522.svg)](https://doi.org/10.5281/zenodo.24480522)
+[![Docker image](https://img.shields.io/docker/v/pennlinc/atlaspack?sort=semver&label=docker)](https://hub.docker.com/r/pennlinc/atlaspack)
+
 Combined cortical/subcortical atlases for XCP-D, QSIPrep, and ASLPrep.
 The `CIT168`, `thalamus`, `cerebellum`, `hippocampus_and_amygdala`, and `Schaefer`
 directories contain scripts that download the atlases from the
@@ -64,30 +67,15 @@ scripts/fetch_data.sh --sources 0.2.0  # also the ~730 MB regeneration inputs
 ```
 
 
-# Harmonizing the QSIPrep and XCP-D atlases
+## Citing AtlasPack
 
-There are many versions of MNI space.
-Unfortunately, many useful atlases are in different versions of MNI space.
+If you use AtlasPack, please cite the version you used, via its Zenodo DOI. For 0.2.0:
 
-Similarly, there are many different brain atlases, each covering different parts of the brain.
-It makes sense to combine multiple atlases so we have one parcellation of many brain parts -
-but we first have to be certain that the atlases are aligned to the same version of the MNI template.
+> Salo, T., & Cieslak, M. (2026). *PennLINC/AtlasPack: 0.2.0* (Version 0.2.0) [Software].
+> Zenodo. https://doi.org/10.5281/zenodo.24480522
 
-
-## Additional between-template transforms
-
-Aligning between versions of MNI templates can be done robustly using TemplateFlow's methodology.
-The authors generously shared their code and data with us,
-allowing us to create some additional between-template transforms that
-are not currently included in TemplateFlow.
-
-In this code repository you can find some scripts where the extra transforms were created.
-
-XCP-D mainly uses MNI152NLin6Asym (FSL, HCP) and MNI152NLin2009cAsym (fmriprep default).
-
-QSIPrep only supports MNI152NLin2009cAsym.
-
-The scripts used to create these transforms are in the `registration_scripts` directory.
+The 4S atlases combine several published atlases, so please also cite the original atlases
+listed in [Which atlases were included?](#which-atlases-were-included).
 
 
 ## Which atlases were included?
@@ -222,3 +210,29 @@ Steps:
    Publishing runs `.github/workflows/docker.yml`, which builds and pushes
    `pennlinc/atlaspack:<version>` and `:latest` from the release assets.
    That workflow needs the `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` repository secrets.
+
+
+## Harmonizing the QSIPrep and XCP-D atlases
+
+There are many versions of MNI space.
+Unfortunately, many useful atlases are in different versions of MNI space.
+
+Similarly, there are many different brain atlases, each covering different parts of the brain.
+It makes sense to combine multiple atlases so we have one parcellation of many brain parts -
+but we first have to be certain that the atlases are aligned to the same version of the MNI template.
+
+
+### Additional between-template transforms
+
+Aligning between versions of MNI templates can be done robustly using TemplateFlow's methodology.
+The authors generously shared their code and data with us,
+allowing us to create some additional between-template transforms that
+are not currently included in TemplateFlow.
+
+In this code repository you can find some scripts where the extra transforms were created.
+
+XCP-D mainly uses MNI152NLin6Asym (FSL, HCP) and MNI152NLin2009cAsym (fmriprep default).
+
+QSIPrep only supports MNI152NLin2009cAsym.
+
+The scripts used to create these transforms are in the `registration_scripts` directory.
