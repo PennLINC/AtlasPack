@@ -20,12 +20,24 @@ jobs:
       - name: Verify tracked dataset files
         run: |
           set -euo pipefail
-          git ls-files AtlasPack > tracked.txt
+          git ls-files AtlasPack | LC_ALL=C sort > tracked.txt
+          sed -E 's/^[0-9a-f]{64} [ *]//' checksums/atlaspack.sha256 | LC_ALL=C sort > manifest.txt
+
+          duplicates="$(uniq -d manifest.txt)"
+          if [ -n "${duplicates}" ]; then
+            echo "Duplicate entries in checksums/atlaspack.sha256:"
+            echo "${duplicates}"
+            exit 1
+          fi
+
+          unlisted="$(LC_ALL=C comm -23 tracked.txt manifest.txt)"
+          if [ -n "${unlisted}" ]; then
+            echo "Tracked files missing from checksums/atlaspack.sha256:"
+            echo "${unlisted}"
+            exit 1
+          fi
+
           awk 'NR == FNR { tracked[$0]; next }
                { path = $0; sub(/^[0-9a-f]+ [ *]/, "", path) }
                path in tracked' tracked.txt checksums/atlaspack.sha256 > tracked.sha256
-          if [ "$(wc -l < tracked.sha256)" -ne "$(wc -l < tracked.txt)" ]; then
-            echo "Some tracked files in AtlasPack/ are missing from checksums/atlaspack.sha256"
-            exit 1
-          fi
           sha256sum -c --quiet tracked.sha256

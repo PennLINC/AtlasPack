@@ -50,3 +50,51 @@ list_dataset_files() {
         find "${DATASET_DIR}" -type f ! -name '._*' ! -name '.DS_Store'
     ) | LC_ALL=C sort
 }
+
+# Print the sorted paths listed in a checksum manifest.
+manifest_paths() {
+    sed -E 's/^[0-9a-f]{64} [ *]//' "$1" | LC_ALL=C sort
+}
+
+# Fail unless a version is a plain tag name (e.g. 0.2.0 or 1.0.0rc1), so it
+# is safe to use in paths and URLs.
+validate_version() {
+    if ! printf '%s' "$1" | grep -Eq '^[0-9A-Za-z][0-9A-Za-z._+-]*$' \
+        || printf '%s' "$1" | grep -q '\.\.'; then
+        echo "Invalid version '$1': use a tag name like 0.2.0" >&2
+        exit 1
+    fi
+}
+
+# Fail unless two sorted path lists (given as files) are identical,
+# printing the differences.
+require_same_paths() {
+    local label="$1" expected="$2" actual="$3"
+    if ! diff "${expected}" "${actual}" > /dev/null; then
+        echo "${label}: file set does not match the manifest" >&2
+        diff "${expected}" "${actual}" | grep '^[<>]' | sed 's/^</  missing:/; s/^>/  unexpected:/' >&2
+        exit 1
+    fi
+}
+
+# Fail unless a tarball holds only regular files whose paths are exactly
+# the paths in the manifest. Run this before extracting anything.
+check_tarball_members() {
+    local tarball="$1" manifest="$2" tmp
+    tmp="$(mktemp -d)"
+    manifest_paths "${manifest}" > "${tmp}/expected"
+    tar -tzf "${tarball}" | LC_ALL=C sort > "${tmp}/actual"
+    # In verbose listings the first character is the entry type ("-" = file).
+    tar -tvzf "${tarball}" > "${tmp}/verbose"
+    if grep -v '^-' "${tmp}/verbose" > /dev/null; then
+        echo "$(basename "${tarball}"): contains entries that are not regular files" >&2
+        rm -rf "${tmp}"
+        exit 1
+    fi
+
+    (require_same_paths "$(basename "${tarball}")" "${tmp}/expected" "${tmp}/actual") || {
+        rm -rf "${tmp}"
+        exit 1
+    }
+    rm -rf "${tmp}"
+}

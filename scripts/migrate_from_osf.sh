@@ -84,7 +84,9 @@ while IFS=$'\t' read -r path pointer; do
 
     target="${out_dir}/${path}"
     mkdir -p "$(dirname "${target}")"
-    if [ -f "${target}" ] && [ "$(md5_of "${target}")" = "${expected_md5}" ]; then
+    if [ -f "${target}" ] \
+        && [ "$(wc -c < "${target}" | tr -d ' ')" = "${expected_size}" ] \
+        && [ "$(md5_of "${target}")" = "${expected_md5}" ]; then
         echo "ok (cached) ${path}"
         continue
     fi

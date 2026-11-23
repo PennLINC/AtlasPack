@@ -17,7 +17,7 @@ You do not need DataLad, git-annex, or a clone of this repository.
 VERSION=0.2.0
 curl -fsSLO "https://github.com/PennLINC/AtlasPack/releases/download/${VERSION}/atlaspack-${VERSION}.tar.gz"
 curl -fsSLO "https://github.com/PennLINC/AtlasPack/releases/download/${VERSION}/SHA256SUMS"
-sha256sum --ignore-missing -c SHA256SUMS
+sha256sum --ignore-missing -c SHA256SUMS   # on macOS: shasum -a 256 --ignore-missing -c SHA256SUMS
 tar -xzf "atlaspack-${VERSION}.tar.gz"
 ```
 
