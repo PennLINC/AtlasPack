@@ -44,7 +44,7 @@ fetch_and_extract() {
     local asset="$1"
     echo "Downloading ${asset}"
     curl -fSL --retry 3 -o "${work_dir}/${asset}" "${base_url}/${asset}"
-    (cd "${work_dir}" && grep " ${asset}\$" SHA256SUMS | sha256_tool -c -)
+    (cd "${work_dir}" && grep -E "^[0-9a-f]+ [ *]${asset//./\\.}\$" SHA256SUMS | sha256_tool -c -)
     tar -xzf "${work_dir}/${asset}" -C "${REPO_ROOT}"
 }
 

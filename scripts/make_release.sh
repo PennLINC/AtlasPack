@@ -69,7 +69,11 @@ rm -f "${dist_dir}/.dataset_files" "${dist_dir}/.source_files"
 
 cp "${DATASET_SUMS}" "${dist_dir}/atlaspack.sha256"
 cp "${SOURCES_SUMS}" "${dist_dir}/sources.sha256"
-(cd "${dist_dir}" && sha256_tool "${dataset_tar}" "${sources_tar}" atlaspack.sha256 sources.sha256 > SHA256SUMS)
+(
+    cd "${dist_dir}"
+    sha256_tool "${dataset_tar}" "${sources_tar}" atlaspack.sha256 sources.sha256 \
+        | sed -E 's/^([0-9a-f]+) [ *]/\1  /' > SHA256SUMS
+)
 
 echo "Built release assets in ${dist_dir}:"
 ls -l "${dist_dir}"
