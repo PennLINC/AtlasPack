@@ -1,9 +1,6 @@
-# The actual files should go into this directory (not symlinks)
-
-
+# Data-only image holding the AtlasPack BIDS-Atlas dataset at /AtlasPack.
+# Built by .github/workflows/docker.yml from a published GitHub release;
+# the workflow places the verified release data in docker_build/AtlasPack.
 FROM scratch
 
-COPY ./*4S* /AtlasPack/
-
-
-
+COPY AtlasPack /AtlasPack

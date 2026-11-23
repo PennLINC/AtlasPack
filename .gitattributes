@@ -1,5 +1,7 @@
-* annex.backend=MD5E
-**/.git* annex.largefiles=nothing
-* annex.largefiles=((mimeencoding=binary)and(largerthan=0))
-**/*.label.gii annex.largefiles=(anything)
-**/*.nii annex.largefiles=(anything)
+# The dataset and checksum files must be byte-identical on every platform,
+# or the SHA-256 manifests in checksums/ will not match.
+AtlasPack/** -text
+checksums/** -text
+
+# Shell scripts must keep LF endings to run on Linux and macOS.
+*.sh text eol=lf
