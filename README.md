@@ -1,6 +1,6 @@
 # AtlasPack
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24480522.svg)](https://doi.org/10.5281/zenodo.24480522)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24480521.svg)](https://doi.org/10.5281/zenodo.24480521)
 [![Docker image](https://img.shields.io/docker/v/pennlinc/atlaspack?sort=semver&label=docker)](https://hub.docker.com/r/pennlinc/atlaspack)
 
 Combined cortical/subcortical atlases for XCP-D, QSIPrep, and ASLPrep.
